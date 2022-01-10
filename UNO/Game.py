@@ -49,6 +49,7 @@ multiplayer_img_hover = pygame.image.load('start_btn2_hover.png').convert_alpha(
 play_img = pygame.image.load('play_btn.png').convert_alpha()
 play_img_hover = pygame.image.load('play_btn_hover.png').convert_alpha()
 
+# defining a function named draw_text that draws the text 
 def draw_text(text, font, text_col, x, y):
 
     #setting a variable as the text that is given and renders is with a colour
@@ -68,11 +69,11 @@ class deck(self):
         # creating another list for the coloured cards
         self.colours = ["Red", "Green", "Yellow", "Blue"]
         
-        #creating a for loop that loops the 108 cards in a deck and the 14 different cards, numbered Draw two, reverse card etc
+        #creating a for loop that loops the 108 cards in a deck and the 15 different cards, numbered Draw two, reverse card etc
         for x in range (0,109):
             int = random.randrange(0,14)
             
-            #creating another for loop for the 14 differnet cards and if the numbers do not equal the 13th or 14th 
+            #creating another for loop for the 15 differnet cards and if the numbers do not equal the 13th or 14th 
             #(colour wheel / pick up 4) then it will assign a colour to it and put it into the empty list
             for x in range(0,15):
                 if int == x:
