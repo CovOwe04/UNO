@@ -67,7 +67,8 @@ class deck(self):
 
             for x in range(0,15):
                 if int == x:
-                    self.drawcard.append(self.deckcards[int])
+                    if int != 13 or int != 14:
+                        self.drawcard.append(self.deckcards[int],self.colours[random.randrange(0,3)])
     
     
         
