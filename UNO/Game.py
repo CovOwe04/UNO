@@ -55,12 +55,11 @@ def draw_text(text, font, text_col, x, y):
     #draws the text on the window
     screen.blit(img, (x, y))
     
+#class made by kat
 class deck():
-   
-    colours = ["Red", "Green", "Yellow", "Blue"]
-    #kat
+    int = random.randrange(0,2)
     deckcards = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "Draw two", "Reverse Card", "Skip Card", "Colour Wheel", "Pick up 4"]
-    #kat
+    colours = ["Red", "Green", "Yellow", "Blue"]
     
         
 class Button():
