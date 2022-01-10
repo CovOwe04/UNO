@@ -69,6 +69,8 @@ class deck(self):
                 if int == x:
                     if int != 13 or int != 14:
                         self.drawcard.append(self.deckcards[int],self.colours[random.randrange(0,3)])
+                    else:
+                        self.drawcard.append(self.deckcards[int])
     
     
         
@@ -78,7 +80,7 @@ class Button():
         #sets the button's image to the given image
         self.image = image
 
-        #sets a rectangle to be the size of the image size(width x height). used for collision
+        #sets a rectangle to be the size of the image size(width x height). used for mouse detection
         self.rect = self.image.get_rect()
 
         #sets the x and y coordinates of the rectangle to the given points
