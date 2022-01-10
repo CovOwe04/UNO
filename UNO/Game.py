@@ -40,14 +40,14 @@ Yellow = (255,255,0)
 Blue = (0,0,255)
 
 #setting variables as images to use later (convert_alpha is a function that helps make the game run smoother)
-bg_img = pygame.image.load('UNO/UNO_bg.jpg').convert_alpha()
-title_img = pygame.image.load('UNO/UNO_title.png').convert_alpha()
-singleplayer_img = pygame.image.load('UNO/start_btn.png').convert_alpha()
-singleplayer_img_hover = pygame.image.load('UNO/start_btn_hover.png').convert_alpha()
-multiplayer_img = pygame.image.load('UNO/start_btn2.png').convert_alpha()
-multiplayer_img_hover = pygame.image.load('UNO/start_btn2_hover.png').convert_alpha()
-play_img = pygame.image.load('UNO/play_btn.png').convert_alpha()
-play_img_hover = pygame.image.load('UNO/play_btn_hover.png').convert_alpha()
+bg_img = pygame.image.load('UNO_bg.jpg').convert_alpha()
+title_img = pygame.image.load('UNO_title.png').convert_alpha()
+singleplayer_img = pygame.image.load('start_btn.png').convert_alpha()
+singleplayer_img_hover = pygame.image.load('start_btn_hover.png').convert_alpha()
+multiplayer_img = pygame.image.load('start_btn2.png').convert_alpha()
+multiplayer_img_hover = pygame.image.load('start_btn2_hover.png').convert_alpha()
+play_img = pygame.image.load('play_btn.png').convert_alpha()
+play_img_hover = pygame.image.load('play_btn_hover.png').convert_alpha()
 
 def draw_text(text, font, text_col, x, y):
 
@@ -70,7 +70,9 @@ class deck(self):
             for x in range(0,15):
                 if int == x:
                     if int != 13 or int != 14:
-                        self.drawcard.append(self.deckcards[int],self.colours[random.randrange(0,3)])
+                        self.drawcard.append((self.deckcards[int],self.colours[random.randrange(0,3)]))
+                    else:
+                        self.drawcard.append(self.deckcards[int])
     
     
         
