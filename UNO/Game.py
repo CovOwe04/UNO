@@ -49,7 +49,7 @@ multiplayer_img_hover = pygame.image.load('start_btn2_hover.png').convert_alpha(
 play_img = pygame.image.load('play_btn.png').convert_alpha()
 play_img_hover = pygame.image.load('play_btn_hover.png').convert_alpha()
 
-# defining a function named draw_text that draws the text 
+# defining a function named draw_text that draws the text and font on the coordinate plane 
 def draw_text(text, font, text_col, x, y):
 
     #setting a variable as the text that is given and renders is with a colour
@@ -58,7 +58,7 @@ def draw_text(text, font, text_col, x, y):
     #draws the text on the display window
     screen.blit(img, (x, y))
     
-#class made by Kat :)
+#class deck made by Kat :)
 # creating a class for the card deck uno
 class deck(self):
     def__init__(self):
