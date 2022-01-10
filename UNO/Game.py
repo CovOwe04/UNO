@@ -29,17 +29,17 @@ instructions = True
 #setting a variable to check if the user clicked singleplayer or multiplayer or if the game has ended
 Gameplay = 0
 
-#creating a font for the text in the game
+#creating a font for all  text in the game, with a size of 36 pixels
 font = pygame.font.SysFont('impact', 36)
 
-#defining a bunch of colours to make colouring things in code easier (uses RGB values to make colours)
+#defining the colours for the main menu White, Black, Yellow, Blue(uses RGB values to make colours)
 #RGB is how much of either Red, Blue or Green a colour has, the higher the number the higher the saturation
 White = (255,255,255)
 Black = (0,0,0)
 Yellow = (255,255,0)
 Blue = (0,0,255)
 
-#setting variables as images to use later (convert_alpha is a function that helps make the game run smoother)
+#setting variables as images to use for the title, single player or mulitplayer(convert_alpha is a function that helps make the game run smoother)
 bg_img = pygame.image.load('UNO_bg.jpg').convert_alpha()
 title_img = pygame.image.load('UNO_title.png').convert_alpha()
 singleplayer_img = pygame.image.load('start_btn.png').convert_alpha()
@@ -54,23 +54,31 @@ def draw_text(text, font, text_col, x, y):
     #setting a variable as the text that is given and renders is with a colour
     img = font.render(text, True, text_col)
 
-    #draws the text on the window
+    #draws the text on the display window
     screen.blit(img, (x, y))
     
 #class made by kat
+# creating a class for the card deck uno
 class deck(self):
     def__init__(self):
+        # creating an empty list to put the cards in
         self.drawcard = []
+        # creating another list for the numbered cards, action cards, and wildcards
         self.deckcards = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "Draw two", "Reverse Card", "Skip Card", "Colour Wheel", "Pick up 4"]
+        # creating another list for the coloured cards
         self.colours = ["Red", "Green", "Yellow", "Blue"]
-                
+        
+        #creating a for loop that loops the 108 cards in a deck and the 14 different cards, numbered Draw two, reverse card etc
         for x in range (0,109):
             int = random.randrange(0,14)
-
+            
+            #creating another for loop for the 14 differnet cards and if the numbers do not equal the 13th or 14th 
+            #(colour wheel / pick up 4) then it will assign a colour to it and put it into the empty list
             for x in range(0,15):
                 if int == x:
                     if int != 13 or int != 14:
                         self.drawcard.append((self.deckcards[int],self.colours[random.randrange(0,3)]))
+                    # if it is a colour wheel or pick up 4 card then it does not get assigned a colour and gets added to the list
                     else:
                         self.drawcard.append(self.deckcards[int])
     
