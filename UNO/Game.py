@@ -1,6 +1,6 @@
 # Owen Covach, Katarina Lukic, Yilin Xu
 # Module 14 Final Project "UNO"
-#hello
+
 #importing pygame into the program
 import pygame
 from pygame.locals import *
@@ -8,7 +8,7 @@ from pygame.locals import *
 #initiates pygame
 pygame.init()
 
-#setting a pygame clock variable to set a framrate for the game
+#setting a pygame clock variable to set a framerate for the game
 clock = pygame.time.Clock()
 fps = 60
 
@@ -53,6 +53,13 @@ def draw_text(text, font, text_col, x, y):
 
     #draws the text on the window
     screen.blit(img, (x, y))
+    
+class deck():
+   
+        colours = { "Red", "Green", "Yellow", "Blue"}
+        numbers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+        wild cards = {"Draw two", "Reverse Card", "Skip Card", "Colour Wheel", "Wild Card"}
+        
 
 class Button():
     #this function is the creation of the button itself, its called when the class is called
@@ -158,6 +165,7 @@ while run == True:
 
                 #
                 screen.blit(pygame.transform.scale(bg_img,(screen_width,screen_height)), (0,0))
+                #start coding here
                 
 
     if main_menu == True:
