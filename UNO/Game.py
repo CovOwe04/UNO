@@ -56,7 +56,7 @@ def draw_text(text, font, text_col, x, y):
     screen.blit(img, (x, y))
     
 #class made by kat
-class deck():
+class deck(self):
     numcards = 108
     deckcards = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "Draw two", "Reverse Card", "Skip Card", "Colour Wheel", "Pick up 4"]
     colours = ["Red", "Green", "Yellow", "Blue"]
