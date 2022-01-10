@@ -210,7 +210,8 @@ while run == True:
             run = False
     
     clock.tick(fps)
+    #updates the pygame display
     pygame.display.update()
     
-
+# closes the pygame application
 pygame.quit()
