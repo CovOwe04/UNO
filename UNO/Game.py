@@ -4,6 +4,7 @@
 #importing pygame into the program
 import pygame
 from pygame.locals import *
+import random
 
 #initiates pygame
 pygame.init()
