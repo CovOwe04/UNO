@@ -63,7 +63,7 @@ class deck():
     int = random.randrange(0,14)
     for x in range(0,15):
         if int == x:
-        drawcard = deckcards[int]
+            drawcard = deckcards[int]
     
     
         
