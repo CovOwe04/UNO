@@ -10,28 +10,30 @@ import random
 pygame.init()
 
 #setting a pygame clock variable to set a framerate for the game
+#fps = Frames per second
 clock = pygame.time.Clock()
 fps = 60
 
-#creating a screen width and height variables
+#creating a screen width and height variables, width is 1000 and height is 600
 screen_width, screen_height = 1000, 600
 
-#creating a screen at the set width and height
+#creating a display screen at the set width and height
 screen = pygame.display.set_mode((screen_width, screen_height))
 #sets a title for the window
 pygame.display.set_caption('UNO!')
 
-#setting a variable to check if in the main menu or not
+#setting a variable to check if the program is in the main menu or not
 main_menu = True
-#setting a variable to check if in the instructions or not
+#setting a variable to check if in the program is in instructions or not
 instructions = True
-#setting a variable to check if the user clicked singleplayer or multiplayer or if the game ended
+#setting a variable to check if the user clicked singleplayer or multiplayer or if the game has ended
 Gameplay = 0
 
-#creating a font to use to draw
+#creating a font for the text in the game
 font = pygame.font.SysFont('impact', 36)
 
 #defining a bunch of colours to make colouring things in code easier (uses RGB values to make colours)
+#RGB is how much of either Red, Blue or Green a colour has, the higher the number the higher the saturation
 White = (255,255,255)
 Black = (0,0,0)
 Yellow = (255,255,0)
@@ -69,8 +71,6 @@ class deck(self):
                 if int == x:
                     if int != 13 or int != 14:
                         self.drawcard.append(self.deckcards[int],self.colours[random.randrange(0,3)])
-                    else:
-                        self.drawcard.append(self.deckcards[int])
     
     
         
@@ -80,7 +80,7 @@ class Button():
         #sets the button's image to the given image
         self.image = image
 
-        #sets a rectangle to be the size of the image size(width x height). used for mouse detection
+        #sets a rectangle to be the size of the image size(width x height). used for collision
         self.rect = self.image.get_rect()
 
         #sets the x and y coordinates of the rectangle to the given points
