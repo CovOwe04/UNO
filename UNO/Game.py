@@ -30,12 +30,13 @@ Gameplay = 0
 #creating a font to use to draw
 font = pygame.font.SysFont('impact', 36)
 
-#defining a bunch of colours to make colouring things in code easier
+#defining a bunch of colours to make colouring things in code easier (uses RGB values to make colours)
 White = (255,255,255)
 Black = (0,0,0)
 Yellow = (255,255,0)
+Blue = (0,0,255)
 
-
+#setting variables as images to use later (convert_alpha is a function that helps make the game run smoother)
 bg_img = pygame.image.load('UNO/UNO_bg.jpg').convert_alpha()
 title_img = pygame.image.load('UNO/UNO_title.png').convert_alpha()
 singleplayer_img = pygame.image.load('UNO/start_btn.png').convert_alpha()
@@ -46,7 +47,11 @@ play_img = pygame.image.load('UNO/play_btn.png').convert_alpha()
 play_img_hover = pygame.image.load('UNO/play_btn_hover.png').convert_alpha()
 
 def draw_text(text, font, text_col, x, y):
+
+    #setting a variable as the text that is given and renders is with a colour
     img = font.render(text, True, text_col)
+
+    #draws the text on the window
     screen.blit(img, (x, y))
 
 class Button():
@@ -101,34 +106,57 @@ class Button():
 
         return action
 
-
+#creating buttons and giving coordinates to place them on the window and an image to display
 Singleplayer_btn = Button(330, 270, singleplayer_img)
 Multiplayer_btn = Button(330, 400, multiplayer_img)
 Play_btn = Button(330, 450, play_img)
 
+#starts the game loop
 run = True
 while run == True:
-    screen.blit(pygame.transform.scale(bg_img,(screen_width,screen_height)), (0,0))
 
+    #runs this if statement if the gameplay variable is 0 (start of program or game over)
     if Gameplay == 0:
+        #prints the background first before the other images
+        screen.blit(pygame.transform.scale(bg_img,(screen_width,screen_height)), (0,0))
+
+        #sets the main menu and instructions variable to true to make them reappear
         main_menu = True
         instructions = True
 
-    if Gameplay == 1:
-        if instructions == True:
-            draw_text('Instructions', font, Yellow, 420, 10)
-            if Play_btn.draw(play_img_hover, play_img):
-                instructions = False
-                pygame.time.delay(100)
-                screen.blit(pygame.transform.scale(bg_img,(screen_width,screen_height)), (0,0))
-                
-
-    elif Gameplay == 2:
+    #runs this if statement if the gameplay variable is 1 (player selected singleplayer)
+    elif Gameplay == 1:
+        #prints the background first before the other images
+        screen.blit(pygame.transform.scale(bg_img,(screen_width,screen_height)), (0,0))
         if instructions == True:
             draw_text('Instructions', font, White, 420, 10)
             if Play_btn.draw(play_img_hover, play_img):
                 instructions = False
                 pygame.time.delay(100)
+                screen.blit(pygame.transform.scale(bg_img,(screen_width,screen_height)), (0,0))
+                
+    #runs this if statement if the gameplay variable is 2 (player selected singleplayer)
+    elif Gameplay == 2:
+
+        #prints the background first before the other images
+        screen.blit(pygame.transform.scale(bg_img,(screen_width,screen_height)), (0,0))
+
+        #checks if the instructions variable is true
+        if instructions == True:
+
+            #displays the text for the instructions of the game
+            draw_text('Instructions', font, White, 420, 10)
+
+            #checks if the player has pressed the play button
+            if Play_btn.draw(play_img_hover, play_img):
+
+                #sets the instructions variable as false
+                instructions = False
+
+                #delays button reaction for 100 milliseconds
+                pygame.time.delay(100)
+
+                #
                 screen.blit(pygame.transform.scale(bg_img,(screen_width,screen_height)), (0,0))
                 
 
