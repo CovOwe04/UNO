@@ -58,7 +58,8 @@ class deck():
    
         colours = { "Red", "Green", "Yellow", "Blue"}
         numbers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
-        wild cards = {"Draw two", "Reverse Card", "Skip Card", "Colour Wheel", "Wild Card"}
+        action cards = {"Draw two", "Reverse Card", "Skip Card"}
+        wild cards = { "Colour Wheel", "Pick up 4"}
         
 
 class Button():
