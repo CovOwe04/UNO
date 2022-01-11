@@ -65,10 +65,11 @@ def draw_text(text, font, text_col, x, y):
     screen.blit(img, (x, y))
 
 #class deck made by Kat :)
-#creating a class for the card deck UNO
+#creating a class for the card deck WAR
 class deck():
-    #this function creates the deck for UNO
+    #this function creates the deck for WAR
     def __init__(self):
+        deckcards = 
         pass
         
             
