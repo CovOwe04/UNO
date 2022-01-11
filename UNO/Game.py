@@ -1,5 +1,5 @@
 # Owen Covach, Katarina Lukic, Yilin Xu
-# Module 14 Final Project "UNO"
+# Module 14 Final Project "WAR"
 
 #importing pygame into the program
 import pygame
@@ -46,14 +46,14 @@ Blue = (0,0,255)
 
 #setting variables as images to use later (convert_alpha is a function that helps make the game run smoother)
 #setting variables as images to use for the title, single player or mulitplayer(convert_alpha is a function that helps make the game run smoother)
-bg_img = pygame.image.load('Assets/UNO_bg.jpg').convert_alpha()
-title_img = pygame.image.load('Assets/UNO_title.png').convert_alpha()
+bg_img = pygame.image.load('Assets/WAR_bg.jpg').convert_alpha()
+title_img = pygame.image.load('Assets/WAR_title.png').convert_alpha()
 singleplayer_img = pygame.image.load('Assets/start_btn.png').convert_alpha()
 singleplayer_img_hover = pygame.image.load('Assets/start_btn_hover.png').convert_alpha()
 multiplayer_img = pygame.image.load('Assets/start_btn2.png').convert_alpha()
 multiplayer_img_hover = pygame.image.load('Assets/start_btn2_hover.png').convert_alpha()
-play_img = pygame.image.load('Assets/play_btn.png').convert_alpha()
-play_img_hover = pygame.image.load('Assets/play_btn_hover.png').convert_alpha()
+continue_img = pygame.image.load('Assets/play_btn.png').convert_alpha()
+continue_img_hover = pygame.image.load('Assets/play_btn_hover.png').convert_alpha()
 
 #defining a function named draw_text that draws the text and font on the coordinate plane 
 def draw_text(text, font, text_col, x, y):
@@ -69,49 +69,8 @@ def draw_text(text, font, text_col, x, y):
 class deck():
     #this function creates the deck for UNO
     def __init__(self):
-
-        # creating an empty list to put the cards in
-        self.drawcard = []
-
-        # creating another list for the numbered cards, action cards, and wildcards
-        self.deckcards = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "Draw two", "Reverse Card", "Skip Card", "Colour Wheel", "Pick up 4"]
-
-        # creating another list for the coloured cards
-        self.colours = ["Red", "Green", "Yellow", "Blue"]
-
-        #creating a for loop that loops the 108 cards in a deck and the 15 different cards, numbered, Draw two, reverse card etc
-        for x in range (0,109):
-            
-            #generates a random number from 0-14(15 being the amount of items in the deckcards list)
-            int = random.randrange(0,14)
-
-            #creating another for loop for the 15 differnet cards and if the number does not equal the 13 or 14 
-            #(colour wheel / pick up 4) then it will assign a colour to it and put that specific card into the empty list
-            #the variable "x" goes through all 15 possibilities for the card
-            for x in range(0,15):
-
-                #if the card is equal to "x" then it figures out if it is a coloured card or not
-                if int == x:
-
-                    #if the card isnt 13 or 14, that means the card can be coloured
-                    if int != 13 and int != 14:
-
-                        #generating a random number from 0-3(4 being the amount of items in the colours list)
-                        colour = random.randrange(0,3)
-
-                        #sets the card to the right colour and adds it to the deck.
-                        if colour == 0:
-                            self.drawcard.append(pygame.image.load('Assets/'+ str(int) +'RED.png').convert_alpha())
-                        if colour == 1:
-                            self.drawcard.append(pygame.image.load('Assets/'+ str(int) +'GREEN.png').convert_alpha())
-                        if colour == 2:
-                            self.drawcard.append(pygame.image.load('Assets/'+ str(int) +'YELLOW.png').convert_alpha())
-                        if colour == 3:
-                            self.drawcard.append(pygame.image.load('Assets/'+ str(int) +'BLUE.png').convert_alpha())
-
-                    # if it is a colour wheel or pick up 4 card then it does not get assigned a colour and gets added to the list
-                    else:
-                        self.drawcard.append(pygame.image.load('Assets/'+ str(int) +'WILD.png').convert_alpha())
+        pass
+        
             
     
 #creates a class for the button in regards to the location, size and if it is clicked or not
@@ -171,7 +130,7 @@ class Button():
 Game_deck = deck()
 Singleplayer_btn = Button(330, 270, singleplayer_img)
 Multiplayer_btn = Button(330, 400, multiplayer_img)
-Play_btn = Button(330, 450, play_img)
+Continue_btn = Button(330, 450, continue_img)
 
 #starts the main game loop
 run = True
@@ -198,7 +157,7 @@ while run == True:
             draw_text('Instructions', font, White, 420, 10)
 
             #checks if the player has pressed the play button
-            if Play_btn.draw(play_img_hover, play_img):
+            if Continue_btn.draw(continue_img_hover, continue_img):
 
                 #sets the instructions variable as false
                 instructions = False
@@ -222,7 +181,7 @@ while run == True:
             draw_text('Instructions', font, White, 420, 10)
 
             #checks if the player has pressed the play button
-            if Play_btn.draw(play_img_hover, play_img):
+            if Continue_btn.draw(continue_img_hover, continue_img):
 
                 #sets the instructions variable as false
                 instructions = False
