@@ -184,15 +184,15 @@ def Multiplayer(instructions):
                 #draws the background image onto the window
                 screen.blit(pygame.transform.scale(bg_img,(screen_width,screen_height)), (0,0))
                 
-                #shuffles then deals deck
-                for x in range(0,54):
-                    rand = random.randint(x,53)
+                #shuffles then deals deck of 52 cards (not inclduing jokers)
+                for x in range(0,52):
+                    rand = random.randint(x,52)
                     
                     temp = Game_deck[x]
                     Game_deck[x] = Game_deck[rand]
                     Game_deck[rand] = temp
                 
-                for x in range(0,27):
+                for x in range(0,26):
                     Player1.append(Game_deck[2 * x])
                     Player2.append(Game_deck[2 * x + 1])
                 
@@ -218,11 +218,11 @@ Play1 = []
 Play2 = []
 
 #creates the card deck
-for x in range(1,14):
-    for z in range(1,5):
+for x in range(1,13):
+    for z in range(0,5):
         Game_deck.append(x)
-Game_deck.append(14)
-Game_deck.append(14)
+Game_deck.append(13)
+Game_deck.append(13)
 
 #creating buttons and giving coordinates to place them on the window and an image to display
 #btn = button
