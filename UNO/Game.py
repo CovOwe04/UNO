@@ -21,7 +21,7 @@ screen_width, screen_height = 1000, 600
 screen = pygame.display.set_mode((screen_width, screen_height))
 
 #sets a title for the window
-pygame.display.set_caption('UNO!')
+pygame.display.set_caption('WAR!')
 
 #setting a variable to check if the program is in the main menu or not
 main_menu = True
