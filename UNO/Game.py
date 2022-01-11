@@ -112,7 +112,7 @@ class deck():
                     # if it is a colour wheel or pick up 4 card then it does not get assigned a colour and gets added to the list
                     else:
                         self.drawcard.append(pygame.image.load('Assets/'+ str(int) +'WILD.png').convert_alpha())
-    
+            
     
 #creates a class for the button in regards to the location, size and if it is clicked or not
 class Button():
@@ -283,6 +283,7 @@ while run == True:
 
     #updates the pygame display after each user input
     pygame.display.update()
+    
     
 # closes the pygame application
 pygame.quit()
