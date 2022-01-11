@@ -141,28 +141,30 @@ def Singleplayer(instructions):
                 for x in range(0,54):
                     rand = random.randint(x,53)
                     
+                    #creates a random temoporary game deck to hold the cards in
                     temp = Game_deck[x]
                     Game_deck[x] = Game_deck[rand]
                     Game_deck[rand] = temp
                 
+                # a for loop that splits the cards in half (26 cards) and puts them at the end of their decks
                 for x in range(0,27):
                     Player1.append(Game_deck[2 * x])
                     Player2.append(Game_deck[2 * x + 1])
 
-                clicked = False
-                while Player1.length != 27 or Player2.length != 27 or round != 100:
+                #reads key presses then adds the top card in the player deck to play 
+                for event in pygame.event.get():
                     
-                    keys_pressed = pygame.key.get_pressed()
-                    if keys_pressed[pygame.K_a] and clicked == False:
-                        Play1.append[Player1[0]]
-                        Player1.remove(Player1[0])
-                        clicked = True
-                    elif keys_pressed[pygame.K_d] and clicked == False:
-                        Play2.append[Player2[0]]
-                        Player2.remove(Player2[0])
-                        clicked = True
-                    elif keys_pressed[pygame.K_a] == False or keys_pressed[pygame.K_a] == False:
-                        clicked = False
+                    # using an event type in pygame which means that when the user pushes the a key on their keyboard, 
+                    #it will add a play to their 100 round count and remove a card from their deck
+                    if event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_a:
+                            Play1.append[Player1[0]]
+                            Player1.remove(Player1[0])
+                            
+                        #similar to the if statement above but player 2 has to push the l key, not the a key.
+                        if event.key == pygame.K_l:
+                            Play2.append[Player2[0]]
+                            Player2.remove(Player2[0])
                 
 
 def Multiplayer(instructions):
@@ -201,20 +203,20 @@ def Multiplayer(instructions):
                     Player1.append(Game_deck[2 * x])
                     Player2.append(Game_deck[2 * x + 1])
                 
-                clicked = False
-                while Player1.length != 27 or Player2.length != 27 or round != 100:
+                #reads key presses then adds the top card in the player deck to play 
+                for event in pygame.event.get():
                     
-                    keys_pressed = pygame.key.get_pressed()
-                    if keys_pressed[pygame.K_a] and clicked == False:
-                        Play1.append[Player1[0]]
-                        Player1.remove(Player1[0])
-                        clicked = True
-                    elif keys_pressed[pygame.K_d] and clicked == False:
-                        Play2.append[Player2[0]]
-                        Player2.remove(Player2[0])
-                        clicked = True
-                    elif keys_pressed[pygame.K_a] == False or keys_pressed[pygame.K_a] == False:
-                        clicked = False
+                    # using an event type in pygame which means that when the user pushes the a key on their keyboard, 
+                    #it will add a play to their 100 round count and remove a card from their deck
+                    if event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_a:
+                            Play1.append[Player1[0]]
+                            Player1.remove(Player1[0])
+                            
+                        #similar to the if statement above but player 2 has to push the l key, not the a key.
+                        if event.key == pygame.K_l:
+                            Play2.append[Player2[0]]
+                            Player2.remove(Player2[0])
                 
 
 
