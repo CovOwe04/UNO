@@ -138,7 +138,7 @@ def Singleplayer(instructions):
                 
 
                 #shuffles then deals deck
-                for x in range(0,53):
+                for x in range(0,52):
                     rand = random.randint(x,52)
                     
                     #creates a random temoporary game deck to hold the cards in
@@ -190,7 +190,7 @@ def Multiplayer(instructions):
                 screen.blit(pygame.transform.scale(bg_img,(screen_width,screen_height)), (0,0))
                 
                 #shuffles then deals deck of 52 cards (not inclduing jokers)
-                for x in range(0,53):
+                for x in range(0,52):
                     rand = random.randint(x,52)
                     
                     #creates a random temoporary game deck to hold the cards in
