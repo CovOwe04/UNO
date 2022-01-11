@@ -74,7 +74,7 @@ class deck():
             
     
 #creates a class for the button in regards to the location, size and if it is clicked or not
-class Button():
+class MenuButton():
     #this function is the creation of the button itself, its called when the class is called
     def __init__(self, x, y, image):
         #sets the button's image to the given image
@@ -128,9 +128,9 @@ class Button():
 
 #creating buttons and giving coordinates to place them on the window and an image to display
 Game_deck = deck()
-Singleplayer_btn = Button(330, 270, singleplayer_img)
-Multiplayer_btn = Button(330, 400, multiplayer_img)
-Continue_btn = Button(330, 450, continue_img)
+Singleplayer_btn = MenuButton(330, 270, singleplayer_img)
+Multiplayer_btn = MenuButton(330, 400, multiplayer_img)
+Continue_btn = MenuButton(330, 450, continue_img)
 
 #starts the main game loop
 run = True
