@@ -138,8 +138,8 @@ def Singleplayer(instructions):
                 
 
                 #shuffles then deals deck
-                for x in range(0,54):
-                    rand = random.randint(x,53)
+                for x in range(0,52):
+                    rand = random.randint(x,52)
                     
                     #creates a random temoporary game deck to hold the cards in
                     temp = Game_deck[x]
@@ -147,12 +147,12 @@ def Singleplayer(instructions):
                     Game_deck[rand] = temp
                 
                 # a for loop that splits the cards in half (26 cards) and puts them at the end of their decks
-                for x in range(0,27):
+                for x in range(0,26):
                     Player1.append(Game_deck[2 * x])
                     Player2.append(Game_deck[2 * x + 1])
 
                 clicked = False
-                while Player1.length != 27 or Player2.length != 27 or round != 100:
+                while Player1.length != 26 or Player2.length != 26 or round != 100:
                     
                     keys_pressed = pygame.key.get_pressed()
                     if keys_pressed[pygame.K_a] and clicked == False:
@@ -204,7 +204,7 @@ def Multiplayer(instructions):
                     Player2.append(Game_deck[2 * x + 1])
                 
                 clicked = False
-                while Player1.length != 27 or Player2.length != 27 or round != 100:
+                while Player1.length != 26 or Player2.length != 26 or round != 100:
                     
                     keys_pressed = pygame.key.get_pressed()
                     if keys_pressed[pygame.K_a] and clicked == False:
