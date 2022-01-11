@@ -149,17 +149,20 @@ def Singleplayer(instructions):
                     Player1.append(Game_deck[2 * x])
                     Player2.append(Game_deck[2 * x + 1])
 
-                #reads key presses then adds the top card in the player deck to play 
-                for event in pygame.event.get():
-
-                    if event.type == pygame.KEYDOWN:
-                        if event.key == pygame.K_a:
-                            Play1.append[Player1[0]]
-                            Player1.remove(Player1[0])
-
-                        if event.key == pygame.K_l:
-                            Play2.append[Player2[0]]
-                            Player2.remove(Player2[0])
+                clicked = False
+                while Player1.length != 27 or Player2.length != 27 or round != 100:
+                    
+                    keys_pressed = pygame.key.get_pressed()
+                    if keys_pressed[pygame.K_a] and clicked == False:
+                        Play1.append[Player1[0]]
+                        Player1.remove(Player1[0])
+                        clicked = True
+                    elif keys_pressed[pygame.K_d] and clicked == False:
+                        Play2.append[Player2[0]]
+                        Player2.remove(Player2[0])
+                        clicked = True
+                    elif keys_pressed[pygame.K_a] == False or keys_pressed[pygame.K_a] == False:
+                        clicked = False
                 
 
 def Multiplayer(instructions):
@@ -198,20 +201,20 @@ def Multiplayer(instructions):
                     Player1.append(Game_deck[2 * x])
                     Player2.append(Game_deck[2 * x + 1])
                 
-                #reads key presses then adds the top card in the player deck to play 
-                for event in pygame.event.get():
+                clicked = False
+                while Player1.length != 27 or Player2.length != 27 or round != 100:
                     
-                    # using an event type in pygame which means that when the user pushes the a key on their keyboard, 
-                    #it will add a play to their 100 round count and remove a card from their deck
-                    if event.type == pygame.KEYDOWN:
-                        if event.key == pygame.K_a:
-                            Play1.append[Player1[0]]
-                            Player1.remove(Player1[0])
-                            
-                        #similar to the if statement above but player 2 has to push the l key, not the a key.
-                        if event.key == pygame.K_l:
-                            Play2.append[Player2[0]]
-                            Player2.remove(Player2[0])
+                    keys_pressed = pygame.key.get_pressed()
+                    if keys_pressed[pygame.K_a] and clicked == False:
+                        Play1.append[Player1[0]]
+                        Player1.remove(Player1[0])
+                        clicked = True
+                    elif keys_pressed[pygame.K_d] and clicked == False:
+                        Play2.append[Player2[0]]
+                        Player2.remove(Player2[0])
+                        clicked = True
+                    elif keys_pressed[pygame.K_a] == False or keys_pressed[pygame.K_a] == False:
+                        clicked = False
                 
 
 
