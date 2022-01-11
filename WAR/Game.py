@@ -188,22 +188,27 @@ def Multiplayer(instructions):
                 for x in range(0,52):
                     rand = random.randint(x,52)
                     
+                    #creates a random temoporary game deck to hold the cards in
                     temp = Game_deck[x]
                     Game_deck[x] = Game_deck[rand]
                     Game_deck[rand] = temp
-                
+                    
+                # a for loop that splits the cards in half (26 cards) and puts them at the end of their decks
                 for x in range(0,26):
                     Player1.append(Game_deck[2 * x])
                     Player2.append(Game_deck[2 * x + 1])
                 
                 #reads key presses then adds the top card in the player deck to play 
                 for event in pygame.event.get():
-
+                    
+                    # using an event type in pygame which means that when the user pushes the a key on their keyboard, 
+                    #it will add a play to their 100 round count and remove a card from their deck
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_a:
                             Play1.append[Player1[0]]
                             Player1.remove(Player1[0])
-
+                            
+                        #similar to the if statement above but player 2 has to push the l key, not the a key.
                         if event.key == pygame.K_l:
                             Play2.append[Player2[0]]
                             Player2.remove(Player2[0])
