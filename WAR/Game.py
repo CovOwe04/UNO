@@ -1,4 +1,4 @@
-# Owen Covach, Katarina Lukic, Yilin X
+# Owen Covach, Katarina Lukic, Yilin Xu
 # Module 14 Final Project "WAR"
 
 #importing pygame into the program
