@@ -1,5 +1,5 @@
 # Owen Covach, Katarina Lukic, Yilin Xu
-# Module 14 Final Project "UNO"
+# Module 14 Final Project "WAR"
 
 #importing pygame into the program
 import pygame
@@ -21,7 +21,7 @@ screen_width, screen_height = 1000, 600
 screen = pygame.display.set_mode((screen_width, screen_height))
 
 #sets a title for the window
-pygame.display.set_caption('UNO!')
+pygame.display.set_caption('WAR!')
 
 #setting a variable to check if the program is in the main menu or not
 main_menu = True
