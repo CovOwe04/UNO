@@ -217,7 +217,7 @@ Player2 = []
 Play1 = []
 Play2 = []
 
-#creates deck
+#creates the card deck
 for x in range(1,14):
     for z in range(1,5):
         Game_deck.append(x)
@@ -225,13 +225,16 @@ Game_deck.append(14)
 Game_deck.append(14)
 
 #creating buttons and giving coordinates to place them on the window and an image to display
+#btn = button
 Singleplayer_btn = MenuButton(330, 270, singleplayer_img)
 Multiplayer_btn = MenuButton(330, 400, multiplayer_img)
 Continue_btn = MenuButton(330, 450, continue_img)
 
 #starts the main game loop
 run = True
+
 while run == True:
+    #prints the game deck of 52 cards
     print(Game_deck)
     #runs this if statement if the gameplay variable is 0 (start of program or game over)
     if Gameplay == 0:
@@ -251,7 +254,7 @@ while run == True:
     #runs this if statement if the gameplay variable is 2 (player selected multiplayer mode)
     elif Gameplay == 2:
         
-        #starts the multiplayer function which is the multiplayer gamemode against another person
+        #starts the multiplayer function which is the multiplayer game mode against another person
         Multiplayer(instructions)
 
 
