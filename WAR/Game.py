@@ -10,8 +10,8 @@ import random
 pygame.init()
 
 #setting a pygame clock variable to set a framerate for the game
-#fps = Frames per second
 clock = pygame.time.Clock()
+#fps = Frames per second
 fps = 60
 
 #creating a screen width and height variables, width is 1000 and height is 600
@@ -29,14 +29,12 @@ main_menu = True
 #setting a variable to check if in the program is in instructions or not
 instructions = True
 
-#setting a variable to check if the user clicked singleplayer or multiplayer or if the game has ended
+#setting a variable to check if the user clicked singleplayer, multiplayer or if the game has ended
 Gameplay = 0
 
-#creating a font for the text in the game
 #creating a font for all  text in the game, with a size of 36 pixels
 font = pygame.font.SysFont('impact', 36)
 
-#defining a bunch of colours to make colouring things in code easier (uses RGB values to make colours)
 #defining the colours for the main menu White, Black, Yellow, Blue(uses RGB values to make colours)
 #RGB is how much of either Red, Blue or Green a colour has, the higher the number the higher the saturation
 White = (255,255,255)
@@ -44,7 +42,6 @@ Black = (0,0,0)
 Yellow = (255,255,0)
 Blue = (0,0,255)
 
-#setting variables as images to use later (convert_alpha is a function that helps make the game run smoother)
 #setting variables as images to use for the title, single player or mulitplayer(convert_alpha is a function that helps make the game run smoother)
 bg_img = pygame.image.load('Assets/WAR_bg.jpg').convert_alpha()
 title_img = pygame.image.load('Assets/WAR_title.png').convert_alpha()
@@ -60,7 +57,6 @@ def draw_text(text, font, text_col, x, y):
     #setting a variable as the text that is given and renders is with a colour
     img = font.render(text, True, text_col)
 
-    #draws the text on the window
     #draws the text on the display window
     screen.blit(img, (x, y))     
     screen.blit(img, (x, y))
