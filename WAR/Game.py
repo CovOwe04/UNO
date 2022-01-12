@@ -6,8 +6,9 @@ import pygame
 from pygame.locals import *
 import random
 
-#initiates pygame
+#initiates pygame and fonts
 pygame.init()
+pygame.font.init()
 
 #setting a pygame clock variable to set a framerate for the game
 clock = pygame.time.Clock()
@@ -34,6 +35,7 @@ Gameplay = 0
 
 #creating a font for all  text in the game, with a size of 36 pixels
 font = pygame.font.SysFont('impact', 36)
+Countdown_font = pygame.font.SysFont('comicsans', 50)
 
 #defining the colours for the main menu White, Black, Yellow, Blue(uses RGB values to make colours)
 #RGB is how much of either Red, Blue or Green a colour has, the higher the number the higher the saturation
@@ -51,6 +53,8 @@ multiplayer_img = pygame.image.load('Assets/start_btn2.png').convert_alpha()
 multiplayer_img_hover = pygame.image.load('Assets/start_btn2_hover.png').convert_alpha()
 continue_img = pygame.image.load('Assets/play_btn.png').convert_alpha()
 continue_img_hover = pygame.image.load('Assets/play_btn_hover.png').convert_alpha()
+Card_back_img = pygame.image.load('Assets/BACK.png').convert_alpha()
+Discard_img = pygame.image.load('Assets/DISCARD.png').convert_alpha()
 
 #defining a function named draw_text that draws the text and font on the coordinate plane 
 def draw_text(text, font, text_col, x, y):
@@ -116,108 +120,158 @@ class MenuButton():
 
 def Singleplayer(instructions):
     #prints the background first before the other images so there is no overlap
-        screen.blit(pygame.transform.scale(bg_img,(screen_width,screen_height)), (0,0))
+    screen.blit(pygame.transform.scale(bg_img,(screen_width,screen_height)), (0,0))
 
-        #checks if the instructions variable is true
-        if instructions == True:
+    #displays the text for the instructions of the game
+    draw_text('Instructions', font, White, 420, 10)
 
-            #displays the text for the instructions of the game
-            draw_text('Instructions', font, White, 420, 10)
+    #shuffles then deals deck
+    for x in range(0,52):
+        rand = random.randint(x,52)
+                    
+        #creates a random temoporary game deck to hold the cards in
+        temp = Game_deck[x]
+        Game_deck[x] = Game_deck[rand]
+        Game_deck[rand] = temp
+                
+    # a for loop that splits the cards in half (26 cards) and puts them at the end of their decks
+    for x in range(0,26):
+        Player1.append(Game_deck[2 * x])
+        Player2.append(Game_deck[2 * x + 1])
 
-            #checks if the player has pressed the play button
-            if Continue_btn.draw(continue_img_hover, continue_img):
+    clicked = False
+    while len(Player1) != 26 or len(Player2) != 26 or roundnum != 100:
+                    
+        keys_pressed = pygame.key.get_pressed()
+        if keys_pressed[pygame.K_a] and clicked == False:
+            Play1.append[Player1[0]]
+            Player1.remove(Player1[0])
+        elif keys_pressed[pygame.K_a] == False:
+            clicked = False
 
-                #sets the instructions variable as false
-                instructions = False
+    
+                
 
-                #delays button reaction for 100 milliseconds so it is not instatanous 
+def Multiplayer(round_start, clicked, Shuffled, roundnum):
+    #prints the background first before the other images so there is no overlap 
+    
+    draw_text("Player 1", font, Black, 435, 30)
+    draw_text("Player 2", font, Black, 435, 520)
+    draw_text("Press A to flip", font, Blue, 680, 10)
+    draw_text("Press L to flip", font, Blue, 680, 540)
+    screen.blit(pygame.transform.scale(Card_back_img,(150, 200)), (700,70))
+    screen.blit(pygame.transform.scale(Discard_img,(150, 200)), (150,220))
+    screen.blit(pygame.transform.scale(Card_back_img,(150, 200)), (700,70))
+    screen.blit(pygame.transform.scale(Card_back_img,(150, 200)), (700,330))
+    
+
+    if Shuffled == False:
+        
+        
+        #shuffles then deals deck
+        for x in range(0,52):
+            rand = random.randint(x,52)
+                            
+            #creates a random temoporary game deck to hold the cards in
+            temp = Game_deck[x]
+            Game_deck[x] = Game_deck[rand]
+            Game_deck[rand] = temp
+                        
+        # a for loop that splits the cards in half (26 cards) and puts them at the end of their decks
+        for x in range(0,26):
+            Player1.append(Game_deck[2 * x])
+            Player2.append(Game_deck[2 * x + 1])
+
+        Shuffled = True
+        
+
+        print(Discard)
+        print(Player1)
+        print(Player2)
+        
+    if len(Player2) != 52 or len(Player2) != 52 or roundnum <= 200:
+            
+        if round_start == True:
+            draw_text('Player 1 Cards: ' +str(len(Player1)), font, White, 100, 100)
+            draw_text('Player 2 Cards: ' +str(len(Player2)), font, White, 100, 500)     
+            draw_text("3", Countdown_font, White, 440, 240)
+            pygame.display.update()
+            pygame.time.delay(1000)
+            draw_text("2", Countdown_font, White, 480, 240)
+            pygame.display.update()
+            pygame.time.delay(1000)
+            draw_text("1", Countdown_font, White, 520, 240)
+            pygame.display.update()
+            pygame.time.delay(1000)
+            draw_text("FLIP!", Countdown_font, White, 435, 290)
+            pygame.display.update()
+            pygame.time.delay(1000)
+            screen.blit(pygame.transform.scale(bg_img,(screen_width,screen_height)), (0,0))
+            draw_text('Player 1 Cards: ' +str(len(Player1)), font, White, 100, 100)
+            draw_text('Player 2 Cards: ' +str(len(Player2)), font, White, 100, 500)
+            pygame.display.update()
+            round_start = False
+                            
+        if len(Play1) == 0 and len(Play2) == 0 or len(Play1) == 1 and len(Play2) == 0 or len(Play1) == 0 and len(Play2) == 1:
+            keys_pressed = pygame.key.get_pressed()
+            if keys_pressed[pygame.K_a] and clicked == False and len(Play1) == 0:
+                for x1 in range(0,13):
+                    if Player1[0] == x1:
+                        screen.blit(pygame.transform.scale(pygame.image.load('Assets/'+str(x1+1)+'CARD.png'),(150, 200)), (420,90))
+                        pygame.display.update()
+                Play1.append(Player1[0])
+                Player1.remove(Player1[0])
+                clicked = True
                 pygame.time.delay(100)
-
-                #draws the background image onto the window
-                screen.blit(pygame.transform.scale(bg_img,(screen_width,screen_height)), (0,0))
-                
-
-                #shuffles then deals deck
-                for x in range(0,52):
-                    rand = random.randint(x,52)
-                    
-                    #creates a random temoporary game deck to hold the cards in
-                    temp = Game_deck[x]
-                    Game_deck[x] = Game_deck[rand]
-                    Game_deck[rand] = temp
-                
-                # a for loop that splits the cards in half (26 cards) and puts them at the end of their decks
-                for x in range(0,26):
-                    Player1.append(Game_deck[2 * x])
-                    Player2.append(Game_deck[2 * x + 1])
-
-                clicked = False
-                while Player1.length != 26 or Player2.length != 26 or round != 100:
-                    
-                    keys_pressed = pygame.key.get_pressed()
-                    if keys_pressed[pygame.K_a] and clicked == False:
-                        Play1.append[Player1[0]]
-                        Player1.remove(Player1[0])
-                        clicked = True
-                    elif keys_pressed[pygame.K_d] and clicked == False:
-                        Play2.append[Player2[0]]
-                        Player2.remove(Player2[0])
-                        clicked = True
-                    elif keys_pressed[pygame.K_a] == False or keys_pressed[pygame.K_a] == False:
-                        clicked = False
-                
-
-def Multiplayer(instructions):
-    #prints the background first before the other images so there is no overlap
-        screen.blit(pygame.transform.scale(bg_img,(screen_width,screen_height)), (0,0))
-
-        #checks if the instructions variable is true
-        if instructions == True:
-
-            #displays the text for the instructions of the game
-            draw_text('Instructions', font, White, 420, 10)
-
-            #checks if the player has pressed the play button
-            if Continue_btn.draw(continue_img_hover, continue_img):
-
-                #sets the instructions variable as false
-                instructions = False
-
-                #delays button reaction for 100 milliseconds so it is not instatanous 
+                print(Play1)
+            elif keys_pressed[pygame.K_l] and clicked == False and len(Play2) == 0:
+                for x2 in range(0,13):
+                    if Player2[0] == x2:
+                        screen.blit(pygame.transform.scale(pygame.image.load('Assets/'+str(x2+1)+'CARD.png'),(150, 200)), (420,320))
+                        pygame.display.update()
+                Play2.append(Player2[0])
+                Player2.remove(Player2[0])
+                clicked = True
                 pygame.time.delay(100)
-
-                #draws the background image onto the window
-                screen.blit(pygame.transform.scale(bg_img,(screen_width,screen_height)), (0,0))
-                
-                #shuffles then deals deck of 52 cards (not inclduing jokers)
-                for x in range(0,52):
-                    rand = random.randint(x,52)
-                    
-                    #creates a random temoporary game deck to hold the cards in
-                    temp = Game_deck[x]
-                    Game_deck[x] = Game_deck[rand]
-                    Game_deck[rand] = temp
-                    
-                # a for loop that splits the cards in half (26 cards) and puts them at the end of their decks
-                for x in range(0,26):
-                    Player1.append(Game_deck[2 * x])
-                    Player2.append(Game_deck[2 * x + 1])
-                
+                print(Play2)
+            elif keys_pressed[pygame.K_a] == False or keys_pressed[pygame.K_a] == False:
                 clicked = False
-                while Player1.length != 26 or Player2.length != 26 or round != 100:
-                    
-                    keys_pressed = pygame.key.get_pressed()
-                    if keys_pressed[pygame.K_a] and clicked == False:
-                        Play1.append[Player1[0]]
-                        Player1.remove(Player1[0])
-                        clicked = True
-                    elif keys_pressed[pygame.K_d] and clicked == False:
-                        Play2.append[Player2[0]]
-                        Player2.remove(Player2[0])
-                        clicked = True
-                    elif keys_pressed[pygame.K_a] == False or keys_pressed[pygame.K_a] == False:
-                        clicked = False
-                
+
+        if len(Play1) == 1 and len(Play2) == 1:
+            if Play1[0] > Play2[0]:
+                draw_text("Round "+str(roundnum)+" Winner", font, Black, 380, 160)
+                pygame.display.update()
+                Player1.append(Play1[0])
+                Player1.append(Play2[0])
+                if len(Discard) > 0:
+                    Player1.append(Discard[0])
+                roundnum += 1
+                round_start = True
+
+            if Play1[0] < Play2[0]:
+                draw_text("Round "+str(roundnum)+" Winner", font, Black, 380, 380)
+                pygame.display.update()
+                Player2.append(Play1[0])
+                Player2.append(Play2[0])
+                if len(Discard) > 0:
+                    Player2.append(Discard[0])
+                roundnum += 1
+                round_start = True
+            
+            if Play1[0] > 0 and Play2[0] > 0:
+                if Play1[0] == Play2[0]:
+                    draw_text("WAR TIME!", font, Black, 400, 280)
+                    pygame.display.update()
+                    Discard.append(Play1[0])
+                    Discard.append(Play2[0])
+                    roundnum += 1
+                    round_start = True
+            Play1.remove(Play1[0])
+            Play2.remove(Play2[0])
+            pygame.time.delay(3000)
+            screen.blit(pygame.transform.scale(bg_img,(screen_width,screen_height)), (0,0))
+
+    return Shuffled, round_start, roundnum
 
 
 #creating lists for Player decks and play deck
@@ -226,6 +280,7 @@ Player1 = []
 Player2 = []
 Play1 = []
 Play2 = []
+Discard = []
 
 #creates the card deck
 for x in range(1,13):
@@ -242,10 +297,12 @@ Continue_btn = MenuButton(330, 450, continue_img)
 
 #starts the main game loop
 run = True
+clicked = False
+round_start = True
+roundnum = 1
+Shuffled = False
 
 while run == True:
-    #prints the game deck of 52 cards
-    print(Game_deck)
     #runs this if statement if the gameplay variable is 0 (start of program or game over)
     if Gameplay == 0:
         #prints the background first before the other images so there is no overlap
@@ -259,13 +316,13 @@ while run == True:
     elif Gameplay == 1:
 
         #starts the singleplayer function which is the singleplayer gamemode against a "bot"
-        Singleplayer(instructions)
+        Shuffled, round_start, roundnum = Singleplayer(round_start, clicked, Shuffled)
                 
     #runs this if statement if the gameplay variable is 2 (player selected multiplayer mode)
     elif Gameplay == 2:
         
         #starts the multiplayer function which is the multiplayer game mode against another person
-        Multiplayer(instructions)
+        Shuffled, round_start, roundnum = Multiplayer(round_start, clicked, Shuffled, roundnum)
 
 
                 
@@ -273,7 +330,7 @@ while run == True:
     if main_menu == True:
 
         #draws the background image before anything else
-        screen.blit(pygame.transform.scale(title_img,(320,225)), (340,40))
+        screen.blit(pygame.transform.scale(title_img,(320,125)), (340,60))
 
         #checks if the singleplayer button was pressed
         if Singleplayer_btn.draw(singleplayer_img_hover, singleplayer_img):
