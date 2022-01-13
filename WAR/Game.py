@@ -51,8 +51,10 @@ singleplayer_img = pygame.image.load('Assets/start_btn.png').convert_alpha()
 singleplayer_img_hover = pygame.image.load('Assets/start_btn_hover.png').convert_alpha()
 multiplayer_img = pygame.image.load('Assets/start_btn2.png').convert_alpha()
 multiplayer_img_hover = pygame.image.load('Assets/start_btn2_hover.png').convert_alpha()
-continue_img = pygame.image.load('Assets/play_btn.png').convert_alpha()
-continue_img_hover = pygame.image.load('Assets/play_btn_hover.png').convert_alpha()
+rules_img = pygame.image.load('Assets/rules_btn_hover.png').convert_alpha()
+rules_img_hover = pygame.image.load('Assets/rules_btn2_hover.png').convert_alpha()
+continue_img = pygame.image.load('Assets/continue_btn.png').convert_alpha()
+continue_img_hover = pygame.image.load('Assets/continue_btn_hover.png').convert_alpha()
 Card_back_img = pygame.image.load('Assets/BACK.png').convert_alpha()
 Discard_img = pygame.image.load('Assets/DISCARD.png').convert_alpha()
 
@@ -293,6 +295,7 @@ Game_deck.append(13)
 #btn = button
 Singleplayer_btn = MenuButton(330, 270, singleplayer_img)
 Multiplayer_btn = MenuButton(330, 400, multiplayer_img)
+Rules_btn = MenuButton(330, 400, rules_img)
 Continue_btn = MenuButton(330, 450, continue_img)
 
 #starts the main game loop
