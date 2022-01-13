@@ -665,7 +665,6 @@ while run == True:
 
     #updates the pygame display after each user input
     pygame.display.update()
-    
-    
+       
 # closes the pygame application
 pygame.quit()
