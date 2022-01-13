@@ -435,7 +435,7 @@ while run == True:
         main_menu = True
         instructions = True
         Shuffled = False
-        roundnum = 98
+        roundnum = 1
         clicked = False
         round_start = True
 
