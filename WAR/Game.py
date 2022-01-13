@@ -6,7 +6,7 @@ import pygame
 from pygame.locals import *
 import random
 
-#initiates pygame and fonts
+#initiates pygame and the fonts
 pygame.init()
 pygame.font.init()
 
