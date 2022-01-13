@@ -29,9 +29,6 @@ pygame.display.set_caption('WAR!')
 #setting a variable to check if the program is in the main menu or not
 main_menu = True
 
-#setting a variable to check if in the program is in instructions or not
-instructions = False
-
 #setting a variable to check if the user clicked singleplayer, multiplayer or if the game has ended
 Gameplay = 0
 clicked = False
@@ -479,7 +476,6 @@ while run == True:
 
         #sets the main menu and instructions variable to true to run the main menu again and load instructions if the rules button is pressed
         main_menu = True
-        instructions = False
         Shuffled = False
         roundnum = 1
         clicked = False
