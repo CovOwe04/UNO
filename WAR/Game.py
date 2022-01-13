@@ -634,18 +634,10 @@ while run == True:
             screen.blit(pygame.transform.scale(play_bg_img,(screen_width,screen_height)), (0,0))
 
         if Rules_btn.draw(rules_img_hover, rules_img):
-            def display_message(text):
-                smallText = pygame.font.Font('freesansbold.ttf' , 20)
-                TextSurfing, TextWindow = (text, smallText)
-                TextWindow = (380), (350)
-                gameDisplay.blit(TextSurfing, TextWindow)
-                pygame.display.update()
-             
-            def instructions():
-                display_message('Here are the rules')
-                
-            instructions()
-            display_message()
+            
+            draw_text("Here are the instructions", font, black, 50, 60)
+            # updates the display to show the instruction text
+            pygame.display.update()
                 
             #sets the main menu variable to false(stops the main menu screen loop)
             instructions = False
