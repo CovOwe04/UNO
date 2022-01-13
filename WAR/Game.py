@@ -3,6 +3,7 @@
 
 #importing pygame into the program
 import pygame
+# asterisk means import all
 from pygame.locals import *
 import random
 
