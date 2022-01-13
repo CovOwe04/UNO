@@ -167,10 +167,12 @@ def Round_countdown(Gameplay):
     
         #this will only draw if the user chose multiplayer ( 2 players on the same device)
         elif Gameplay == 2:
+            # draws the text for the 2nd player cards including the font
             draw_text('Player 2 Cards: ' +str(len(Player2_deck)), font, Black, 380, 540)
 
         #this will only draw if the user chose multiplayer
         if Gameplay == 2:
+            # draws the text for the controls on how to flip a card and their positioning
             draw_text("Press L to flip", font, Blue, 680, 540)
         draw_text("Press A to flip", font, Blue, 680, 10)
 
@@ -181,7 +183,7 @@ def Round_countdown(Gameplay):
         screen.blit(pygame.transform.scale(Card_back_img,(150, 200)), (700,70))
         screen.blit(pygame.transform.scale(Card_back_img,(150, 200)), (700,330))
 
-        #will only draw if the war pile has cards
+        #will only draw if the war pile has cards because the 2 players are at war
         if len(War_pile) > 0:
             screen.blit(pygame.transform.scale(Card_back_img,(150, 200)), (150,220))
 
@@ -189,14 +191,23 @@ def Round_countdown(Gameplay):
     Game_overlay()
 
     #displays the countdown of 3 seconds onto the screen
-    #'pygame.display.update' updates the screen so the user sees the changes to the window
-    #'pygame.time.delay' delays the code for desired amount of milliseconds (1000 mlliseconds in this case)
     draw_text("3", Countdown_font, White, 440, 240)
+    
+    #'pygame.display.update' updates the screen so the user sees the changes to the window
     pygame.display.update()
+    
+    #'pygame.time.delay' delays the code for desired amount of milliseconds (1000 mlliseconds in this case)
     pygame.time.delay(1000)
+    
+    # draws the text again but for the number 2 instead of 3 to countdown
     draw_text("2", Countdown_font, White, 480, 240)
+    
+    #updates the display to now dispay a 2 instead of a 3
     pygame.display.update()
+    
+    # again delays the number from displaying for 1000 milliseconds (as in a real countdown)
     pygame.time.delay(1000)
+    
     draw_text("1", Countdown_font, White, 520, 240)
     pygame.display.update()
     pygame.time.delay(1000)
@@ -207,7 +218,7 @@ def Round_countdown(Gameplay):
     #draws the overlay again
     Game_overlay()
 
-    #will play the bots card if user chose singleplayer
+    #will play the bot's card if the user chose singleplayer
     if Gameplay == 1:
 
         #runs a loop to go through all 13 values and only displays the card's value, 
@@ -217,7 +228,8 @@ def Round_countdown(Gameplay):
                 #draws the card onto screen
                 screen.blit(pygame.transform.scale(pygame.image.load('Assets/'+str(x1)+'CARD.png'),(150, 200)), (420,320))
     pygame.display.update()
-
+    
+#defines a function named Shuffle_deck
 def Shuffle_deck():
     #shuffles then deals deck
 
