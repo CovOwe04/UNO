@@ -33,14 +33,8 @@ instructions = True
 
 #setting a variable to check if the user clicked singleplayer, multiplayer or if the game has ended
 Gameplay = 0
-
-
 clicked = False
-
-
 round_start = True
-
-
 Shuffled = False
 
 #creating a font for all  text in the game (font style, font size) 
@@ -343,7 +337,7 @@ def Handle_key_presses(clicked, Gameplay):
             #sets clicked to False so the user can play another card next round when it is their turn
             clicked = False
 
-#defines a function named Handle_calculations
+#defines a function named Handle_calculations which handles all the calculations
 def Handle_calculations(roundnum, round_start):
 
     #checks if Player1 has higher card value than Player 2 from their flipped piles
@@ -382,7 +376,7 @@ def Handle_calculations(roundnum, round_start):
         pygame.display.update()
         pygame.time.delay(2000)
 
-        #adds the cards to Player2's deck
+        #adds the cards to Player2's deck from Player 1
         Player2_deck.append(Flipped_pile1[0])
         Player2_deck.append(Flipped_pile2[0])
 
@@ -390,7 +384,7 @@ def Handle_calculations(roundnum, round_start):
         if len(War_pile) > 0:
             for x3 in range(0,len(War_pile)):
 
-                #adds all cards from thr war pile to Player2's deck
+                #adds all cards from the war pile to Player 2's deck
                 Player2_deck.append(War_pile[0])
                 War_pile.remove(War_pile[0])
 
@@ -399,20 +393,22 @@ def Handle_calculations(roundnum, round_start):
         roundnum += 1
         round_start = True
     
-    #checks if Player1 has same value as Player 2
+    #checks if Player1 has same value as Player 2 ( if the same then they go to war!)
     if Flipped_pile1[0] == Flipped_pile2[0]:
 
-        #draws text in the middle of the screen, shows for 2 seconds
+        #draws text in the middle of the screen, which shows for 2 seconds
         draw_text("WAR TIME!", wartime_font, Red, 120, 160)
+        # updates the display to show the text war time
         pygame.display.update()
         pygame.time.delay(2000)
 
-        #adds both flipped cards and adds the top card from each player's deck fro a total of 4 in war pile
-        #'.remove' is called, so that when a card from a deck is added to another deck, its deleted from the original deck
+        #adds both the flipped cards and adds the top card from each player's deck for a total of 4 in the war pile
         War_pile.append(Flipped_pile1[0])
         War_pile.append(Flipped_pile2[0])
         War_pile.append(Player1_deck[0])
         War_pile.append(Player2_deck[0])
+        #'.remove' is called, so that when a card from a deck is added to another deck, 
+        #its deleted from the original deck so that there aren't infite cards
         Player1_deck.remove(Player1_deck[0])
         Player2_deck.remove(Player2_deck[0])
 
@@ -422,16 +418,19 @@ def Handle_calculations(roundnum, round_start):
         round_start = True
     Flipped_pile1.remove(Flipped_pile1[0])
     Flipped_pile2.remove(Flipped_pile2[0])
+    # returns these values
     return round_start, roundnum
 
-#creating lists for Player decks and play deck
+#creating lists for Player decks and the flipped pile
 Game_deck = []
 War_pile = []
 Flipped_pile1 = []
 Flipped_pile2 = []
 
 #creates the card deck
+# the 1st for loop is for the 13 different types of cards ( ace, 2-10, jack, queen, king)
 for x in range(1,13):
+    # the 2nd for loop is for the 4 suits ( club, spades, hearts, diamonds)
     for z in range(0,5):
         Game_deck.append(x)
 Game_deck.append(13)
@@ -448,17 +447,16 @@ Card_btn2 = MenuButton(75, 350, Card_back_img)
 Card_btn3 = MenuButton(775, 75, Card_back_img)
 Card_btn4 = MenuButton(775, 350, Card_back_img)
 
-
 run = True
 
 while run == True:
-    #runs this if statement if the gameplay variable is 0 (start of program or a player wins)
+    #runs this if statement if the gameplay variable is 0 (start of program or if a player wins)
     if Gameplay == 0:
         #prints the background first before the other images so there is no overlap then the title image
         screen.blit(pygame.transform.scale(menu_bg_img,(screen_width,screen_height)), (0,0))
         screen.blit(pygame.transform.scale(title_img,(400,130)), (310,40))
 
-        #sets the main menu and instructions variable to true to run the main menu again and load instructions if rules button is pressed
+        #sets the main menu and instructions variable to true to run the main menu again and load instructions if the rules button is pressed
         main_menu = True
         instructions = True
         Shuffled = False
@@ -482,37 +480,38 @@ while run == True:
             #sets the shuffeld variable to true so it doesnt shuffle again
             Shuffled = True
 
-        #checks if 100 rounds have passed
+        #checks if 100 rounds have passed so the game doesn't go on forever
         if roundnum < 101:    
 
-            #checks if a player has 52 cards
+            #checks if a player has 52 cards in their possesion
             if len(Player2_deck) != 52 or len(Player2_deck) != 52:
                     
                     #checks if a new round has begun
                     if round_start == True:
                         #runs the Round_countdown function, displays a countdown for users
                         Round_countdown(Gameplay)
-                        #stops the countdown from loop
+                        #stops the countdown from the loop
                         round_start = False
 
-                    #checks if both players havent flipped their card
-                    if len(Flipped_pile1) == 0 and len(Flipped_pile2) == 0 or len(Flipped_pile1) == 1 and len(Flipped_pile2) == 0 or len(Flipped_pile1) == 0 and len(Flipped_pile2) == 1:
+                    #checks if both players haven't flipped their card
+                    if len(Flipped_pile1) == 0 and len(Flipped_pile2) == 0 or len(Flipped_pile1) == 1 and 
+                    len(Flipped_pile2) == 0 or len(Flipped_pile1) == 0 and len(Flipped_pile2) == 1:
                         #runs the Handle_key_presses function, constantly checks for button presses to flip cards
                         Handle_key_presses(clicked, Gameplay)
                     
                     #checks if both players flipped their cards
                     if len(Flipped_pile1) == 1 and len(Flipped_pile2) == 1:
                         #runs the Handle_calculations function to check who won the round
-                        # sets round_start and roundnum values so the variable get updated to keep working properly
+                        # sets round_start and roundnum values so the variable can get updated to keep working properly
                         round_start, roundnum = Handle_calculations(roundnum, round_start)
         
-        #if round 100 was complete, it end the game and brings you back to main menu
+        #if round 100 was complete, it ends the game and brings you back to main menu
         else:
 
             #draws the background to erase overlay
             screen.blit(pygame.transform.scale(play_bg_img,(screen_width,screen_height)), (0,0))
 
-            #draws game end text with the winner
+            #draws game end text with the winner ( player 1 or computer)
             draw_text("Game End", wartime_font, Red, 110, 120)
             if Player1_deck > Player2_deck:
                 draw_text("Player 1 Won!", font, Green, 380, 350)
@@ -540,7 +539,7 @@ while run == True:
             #sets the shuffeld variable to true so it doesnt shuffle again
             Shuffled = True
 
-        #checks if 100 rounds have passed
+        #checks if 100 rounds have passed so the game doesn't go on forever
         if roundnum < 101:    
 
             #checks if a player has 52 cards
@@ -550,11 +549,12 @@ while run == True:
                     if round_start == True:
                         #runs the Round_countdown function, displays a countdown for users
                         Round_countdown(Gameplay)
-                        #stops the countdown from loop
+                        #stops the countdown from the loop
                         round_start = False
 
-                    #checks if both players havent flipped their card
-                    if len(Flipped_pile1) == 0 and len(Flipped_pile2) == 0 or len(Flipped_pile1) == 1 and len(Flipped_pile2) == 0 or len(Flipped_pile1) == 0 and len(Flipped_pile2) == 1:
+                    #checks if both players haven't flipped their card
+                    if len(Flipped_pile1) == 0 and len(Flipped_pile2) == 0 or len(Flipped_pile1) == 1 and 
+                    len(Flipped_pile2) == 0 or len(Flipped_pile1) == 0 and len(Flipped_pile2) == 1:
                         #runs the Handle_key_presses function, constantly checks for button presses to flip cards
                         Handle_key_presses(clicked, Gameplay)
                     
@@ -564,13 +564,13 @@ while run == True:
                         # sets round_start and roundnum values so the variable get updated to keep working properly
                         round_start, roundnum = Handle_calculations(roundnum, round_start)
 
-        #if round 100 was complete, it end the game and brings you back to main menu
+        #if round 100 was complete, it ends the game and brings you back to main menu
         else:
 
             #draws the background to erase overlay
             screen.blit(pygame.transform.scale(play_bg_img,(screen_width,screen_height)), (0,0))
 
-            #draws game end text with the winner
+            #draws game end text with the winner (Player 1 or 2)
             draw_text("Game End", wartime_font, Red, 110, 120)
             if Player1_deck > Player2_deck:
                 draw_text("Player 1 Won!", font, Green, 380, 350)
@@ -579,13 +579,13 @@ while run == True:
             pygame.display.update()
             pygame.time.delay(5000)
 
-            #sets Gameplay value to 0, which sends user to main menu
+            #sets Gameplay value to 0, which sends user to the main menu
             Gameplay = 0
                 
     #runs the section if the main menu variable is true
     if main_menu == True:
 
-        #drawing card backs as a small menu feature, flips card when hovered over
+        #drawing card backs as a small menu feature, flips the card when hovered over
         Card_btn1.draw(Ace_img, Card_back_img)
         Card_btn2.draw(Seven_img, Card_back_img)
         Card_btn3.draw(King_img, Card_back_img)
@@ -594,7 +594,7 @@ while run == True:
         #checks if the singleplayer button was pressed
         if Singleplayer_btn.draw(singleplayer_img_hover, singleplayer_img):
 
-            #sets the main menu variable to false(stops the main menu screen loop)
+            #sets the main menu variable to false (stops the main menu screen loop)
             main_menu = False
 
             #sets the Gameplay variable to 1 (singleplayer game)
@@ -635,7 +635,7 @@ while run == True:
             #draws that background image to remove menu images
             screen.blit(pygame.transform.scale(menu_bg_img,(screen_width,screen_height)), (0,0))
 
-    # if the player has quit the game then the program with close
+    # if the player has quit the game then the program will close
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
