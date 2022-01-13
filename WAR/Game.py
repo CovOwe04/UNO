@@ -221,11 +221,11 @@ def Round_countdown(Gameplay):
     #will play the bot's card if the user chose singleplayer
     if Gameplay == 1:
 
-        #runs a loop to go through all 13 values and only displays the card's value, 
+        #runs a loop to go through all the 13 card values and only displays the card's value,
         #(eg. if Player2_deck[0] =  6, "Player2_deck[0] == x1" is only true when x1 is 6 in this case so it only displays the 6 card onto the screen)
         for x1 in range(0,13):
             if Player2_deck[0] == x1:
-                #draws the card onto screen
+                #draws the card onto screen using images from the assets folder
                 screen.blit(pygame.transform.scale(pygame.image.load('Assets/'+str(x1)+'CARD.png'),(150, 200)), (420,320))
     pygame.display.update()
     
@@ -234,14 +234,13 @@ def Shuffle_deck():
     #shuffles then deals deck
 
         #what this does is go through each index in the game deck, and swaps it with a random number in the deck from the range of 'x' to the end of the list
-
         #goes through each value in from the list
         for x in range(0,52):
 
             #generates a random number from x to the end of the list
             rand = random.randint(x,52)
                                     
-            #sets a temp value as the game deck value of idex 'x'
+            #sets a temporary value as the game deck value of index 'x'
             temp = Game_deck[x]
 
             #then sets the game deck value at index 'x' to the game deck value at index 'rand' (a random number)
@@ -256,6 +255,7 @@ def Shuffle_deck():
             Player1_deck.append(Game_deck[2 * x])
             Player2_deck.append(Game_deck[2 * x + 1])
 
+#defines a function named Handle-key-presses that has clicked and Gameplay passed through it
 def Handle_key_presses(clicked, Gameplay):
     
     #runs the singleplayer button presses
@@ -264,19 +264,21 @@ def Handle_key_presses(clicked, Gameplay):
         #scans for any key presses constantly
         keys_pressed = pygame.key.get_pressed()
 
-        #checks if the 'A' key was pressed, if it hasnt been clicked already, and if there isntt a card already flipped
+        #checks if the 'A' key was pressed, if it hasnt been clicked already, and if there isn't a card already flipped
         if keys_pressed[pygame.K_a] and clicked == False and len(Flipped_pile1) == 0:
-
-            #runs a loop to go through all 13 values and only displays the card's value
+      
+            #runs a loop to go through all the 13 card values and only displays the card's value,
             for x1 in range(0,13):
                 if Player1_deck[0] == x1:
                     #draws the card onto screen
                     screen.blit(pygame.transform.scale(pygame.image.load('Assets/'+str(x1)+'CARD.png'),(150, 200)), (420,90))
+                    #updates the display window
                     pygame.display.update()
 
             #moves the top card from each player's deck onto the flipped card piles (put each player card in play)
-            #'.remove' is called, so that when a card from a deck is added to another deck, its deleted from the original deck
             Flipped_pile1.append(Player1_deck[0])
+            #'.remove' is called, so that when a card from a deck is added to another deck, 
+            #it's deleted from the original deck so that there aren't endless amount of cards
             Player1_deck.remove(Player1_deck[0])
             Flipped_pile2.append(Player2_deck[0])
             Player2_deck.remove(Player2_deck[0])
@@ -287,7 +289,7 @@ def Handle_key_presses(clicked, Gameplay):
         #checks if user lets go of 'A' key
         elif keys_pressed[pygame.K_a]:
 
-            #sets clicked to False so the user can play another card next round
+            #sets clicked to False so the user can play another card next round when it is their turn
             clicked = False
     
     #runs the singleplayer button presses
@@ -307,14 +309,15 @@ def Handle_key_presses(clicked, Gameplay):
                     pygame.display.update()
 
             #moves the top card from player1's deck onto the flipped card pile (puts player1's card in play)
-            #'.remove' is called, so that when a card from a deck is added to another deck, its deleted from the original deck
+            #'.remove' is called, so that when a card from a deck is added to another deck, it's deleted from the original deck
+            # so that there aren't endless amount of cards
             Flipped_pile1.append(Player1_deck[0])
             Player1_deck.remove(Player1_deck[0])
 
             #sets clicked to True to stop instantly placing another card
             clicked = True
         
-        #checks if the 'L' key was pressed, if it hasnt been clicked already, and if there isntt a card already flipped
+        #checks if the 'L' key was pressed, if it hasnt been clicked already, and if there isn't a card already flipped
         elif keys_pressed[pygame.K_l] and clicked == False and len(Flipped_pile2) == 0:
 
             #runs a loop to go through all 13 values and only displays the card's value
@@ -327,6 +330,7 @@ def Handle_key_presses(clicked, Gameplay):
 
             #moves the top card from player2's deck onto the flipped card pile (puts player2's card in play)
             #'.remove' is called, so that when a card from a deck is added to another deck, its deleted from the original deck
+            # so that there aren't endless amount of cards
             Flipped_pile2.append(Player2_deck[0])
             Player2_deck.remove(Player2_deck[0])
 
@@ -336,28 +340,33 @@ def Handle_key_presses(clicked, Gameplay):
         #checks if players let go of 'A' or 'L' key
         elif keys_pressed[pygame.K_a] == False or keys_pressed[pygame.K_l] == False:
 
-            #sets clicked to False so the user can play another card next round
+            #sets clicked to False so the user can play another card next round when it is their turn
             clicked = False
 
+#defines a function named Handle_calculations
 def Handle_calculations(roundnum, round_start):
 
-    #checks if Player1 has higher card value than Player 2
+    #checks if Player1 has higher card value than Player 2 from their flipped piles
     if Flipped_pile1[0] > Flipped_pile2[0]:
 
-        #draws the round winner text on screen ontop of the card that won, shows for 2 seconds
+        #draws the round winner text on screen on top of the card that won, which shows for 2 seconds
         draw_text("Round "+str(roundnum)+" Winner", font, Green, 380, 160)
+        #updates the display window so it can now show the winner for the round
         pygame.display.update()
+        # this shows up for 2000 miliiseconds so the user can read it before it disapears
         pygame.time.delay(2000)
 
-        #adds the cards to Player1's deck
+        #adds the cards to Player 1's deck from Player 2
         Player1_deck.append(Flipped_pile1[0])
         Player1_deck.append(Flipped_pile2[0])
 
         #checks if there were any cards in the war pile to add
         if len(War_pile) > 0:
-            #adds all cards from thr war pile to Player1's deck
+            
+            #adds all cards from the war pile to Player1's deck
             for x3 in range(0,len(War_pile)):
                 Player1_deck.append(War_pile[0])
+                #removes the cards from the war pile
                 War_pile.remove(War_pile[0])
         
         #add 1 to roundnum to count up the amount of rounds
@@ -368,7 +377,7 @@ def Handle_calculations(roundnum, round_start):
     #checks if Player1 has lower card value than Player 2
     if Flipped_pile1[0] < Flipped_pile2[0]:
 
-        #draws the round winner text on screen ontop of the card that won, shows for 2 seconds
+        #draws the round winner text on screen ontop of the card that won, which shows for 2 seconds
         draw_text("Round "+str(roundnum)+" Winner", font, Green, 380, 380)
         pygame.display.update()
         pygame.time.delay(2000)
