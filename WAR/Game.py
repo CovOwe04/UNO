@@ -635,8 +635,8 @@ while run == True:
         if Rules_btn.draw(rules_img_hover, rules_img):
             def display_message(text):
                 smallText = pygame.font.Font('freesansbold.ttf' , 20)
-                TextSurfing, TextWindow = text_objects(text, smallText)
-                TextWindow = (display_width), (display_height)
+                TextSurfing, TextWindow = (text, smallText)
+                TextWindow = (380), (350)
                 gameDisplay.blit(TextSurfing, TextWindow)
                 pygame.display.update()
              
