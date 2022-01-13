@@ -202,11 +202,22 @@ def Round_countdown(Gameplay):
     # again delays the number from displaying for 1000 milliseconds (as in a real countdown)
     pygame.time.delay(1000)
     
+    # draws the text again but for the number 1 instead of 2 to countdown
     draw_text("1", Countdown_font, White, 520, 240)
+    
+    #updates the display to now dispay a 1 instead of a 2
     pygame.display.update()
+    
+    # again delays the number from displaying for 1000 milliseconds (as in a real countdown)
     pygame.time.delay(1000)
+    
+    # draws the text again but for the word "FLIP!" instead of the countdown
     draw_text("FLIP!", Countdown_font, White, 435, 290)
+    
+    #updates the display to now dispay a "FLIP! instead of the countdown
     pygame.display.update()
+    
+     # again delays the number from displaying for 1000 milliseconds (as in a real countdown)
     pygame.time.delay(1000)
 
     #draws the overlay again
@@ -228,7 +239,7 @@ def Shuffle_deck():
     #shuffles then deals deck
 
         #what this does is go through each index in the game deck, and swaps it with a random number in the deck from the range of 'x' to the end of the list
-        #goes through each value in from the list
+        #goes through each value from the list
         for x in range(0,52):
 
             #generates a random number from x to the end of the list
