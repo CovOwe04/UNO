@@ -639,6 +639,9 @@ while run == True:
                 TextWindow = (display_width), (display_height)
                 gameDisplay.blit(TextSurfing, TextWindow)
                 pygame.display.update()
+             
+            def instructions():
+                display_message('Here are the rules')
                 
             #sets the main menu variable to false(stops the main menu screen loop)
             instructions = False
