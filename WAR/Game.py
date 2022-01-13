@@ -64,6 +64,10 @@ rules_img = pygame.image.load('Assets/rules_btn.png').convert_alpha()
 rules_img_hover = pygame.image.load('Assets/rules_btn_hover.png').convert_alpha()
 continue_img = pygame.image.load('Assets/continue_btn.png').convert_alpha()
 continue_img_hover = pygame.image.load('Assets/continue_btn_hover.png').convert_alpha()
+MainMenu_img = pygame.image.load('Assets/MainMenu_btn.png').convert_alpha()
+MainMenu_img_hover = pygame.image.load('Assets/MainMenu_btn_hover.png').convert_alpha()
+MainMenu_img = pygame.transform.scale(MainMenu_img,(309,103)).convert_alpha()
+MainMenu_img_hover = pygame.transform.scale(MainMenu_img_hover,(309,103)).convert_alpha()
 Card_back_img = pygame.image.load('Assets/BACK.png').convert_alpha()
 Card_back_img = pygame.transform.scale(Card_back_img,(150, 200))
 War_pile_img = pygame.image.load('Assets/War_pile.png').convert_alpha()
@@ -459,13 +463,13 @@ Singleplayer_btn = MenuButton(340, 220, singleplayer_img)
 Multiplayer_btn = MenuButton(340, 345, multiplayer_img)
 Rules_btn = MenuButton(345, 470, rules_img)
 Continue_btn = MenuButton(670, 475, continue_img)
+MainMenu_btn = MenuButton(20,475, MainMenu_img)
 Card_btn1 = MenuButton(75, 75, Card_back_img)
 Card_btn2 = MenuButton(75, 350, Card_back_img)
 Card_btn3 = MenuButton(775, 75, Card_back_img)
 Card_btn4 = MenuButton(775, 350, Card_back_img)
 
 run = True
-
 while run == True:
 
     #runs this if statement if the gameplay variable is 0 (start of program or if a player wins)
@@ -483,7 +487,8 @@ while run == True:
 
     #runs this if statement if the gameplay variable is 1 (player selected singleplayer mode)
     elif Gameplay == 1:
-
+        if MainMenu_btn.draw(MainMenu_img_hover, MainMenu_img):
+            Gameplay = 0
         #starts the singleplayer function which is the singleplayer gamemode against a "bot"
         if Shuffled == False:
 
@@ -539,10 +544,10 @@ while run == True:
             #sets Gameplay value to 0, which sends user to main menu
             Gameplay = 0
         
-                
     #runs this if statement if the gameplay variable is 2 (player selected multiplayer mode)
     elif Gameplay == 2:
-        
+        if MainMenu_btn.draw(MainMenu_img_hover, MainMenu_img):
+            Gameplay = 0
         #starts the singleplayer function which is the singleplayer gamemode against a "bot"
         if Shuffled == False:
             #creates the player decks
@@ -611,7 +616,7 @@ while run == True:
 
         #checks if the singleplayer button was pressed
         if Singleplayer_btn.draw(singleplayer_img_hover, singleplayer_img):
-
+            
             #sets the main menu variable to false (stops the main menu screen loop)
             main_menu = False
 
@@ -654,9 +659,6 @@ while run == True:
             #delays button reaction by 100 milliseconds
             pygame.time.delay(100)
             
-
-    
-
     # if the player has quit the game then the program will close
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
