@@ -53,12 +53,20 @@ singleplayer_img = pygame.image.load('Assets/start_btn.png').convert_alpha()
 singleplayer_img_hover = pygame.image.load('Assets/start_btn_hover.png').convert_alpha()
 multiplayer_img = pygame.image.load('Assets/start_btn2.png').convert_alpha()
 multiplayer_img_hover = pygame.image.load('Assets/start_btn2_hover.png').convert_alpha()
-rules_img = pygame.image.load('Assets/rules_btn_hover.png').convert_alpha()
+rules_img = pygame.image.load('Assets/rules_btn.png').convert_alpha()
 rules_img_hover = pygame.image.load('Assets/rules_btn_hover.png').convert_alpha()
 continue_img = pygame.image.load('Assets/continue_btn.png').convert_alpha()
 continue_img_hover = pygame.image.load('Assets/continue_btn_hover.png').convert_alpha()
 Card_back_img = pygame.image.load('Assets/BACK.png').convert_alpha()
 Discard_img = pygame.image.load('Assets/DISCARD.png').convert_alpha()
+Ace_img =  pygame.image.load('Assets/1CARD.png').convert_alpha()
+Ace_img = pygame.transform.scale(Ace_img,(150, 200))
+Seven_img =  pygame.image.load('Assets/7CARD.png').convert_alpha()
+Seven_img = pygame.transform.scale(Seven_img,(150, 200))
+King_img =  pygame.image.load('Assets/13CARD.png').convert_alpha()
+King_img = pygame.transform.scale(King_img,(150, 200))
+Jack_img =  pygame.image.load('Assets/11CARD.png').convert_alpha()
+Jack_img = pygame.transform.scale(Jack_img,(150, 200))
 
 #defining a function named draw_text that draws the text and font on the coordinate plane 
 def draw_text(text, font, text_col, x, y,):    #setting a variable as the text that is given and renders is with a colour
@@ -146,6 +154,7 @@ def Singleplayer(round_start, clicked, Shuffled, roundnum, ):
             print(Player1)
             print(Player2)
             screen.blit(pygame.transform.scale(bg_img,(screen_width,screen_height)), (0,0))
+            draw_text("Round "+str(roundnum), Countdown_font, White, 40, 20)
             draw_text('Player 1 Cards: ' +str(len(Player1)), font, Black, 380, 10)
             draw_text('Computer Cards: ' +str(len(Player2)), font, Black, 360, 540)
             draw_text("Press A to flip", font, Blue, 680, 10)
@@ -167,6 +176,7 @@ def Singleplayer(round_start, clicked, Shuffled, roundnum, ):
             pygame.display.update()
             pygame.time.delay(1000)
             screen.blit(pygame.transform.scale(bg_img,(screen_width,screen_height)), (0,0))
+            draw_text("Round "+str(roundnum), Countdown_font, White, 40, 20)
             draw_text('Player 1 Cards: ' +str(len(Player1)), font, Black, 380, 10)
             draw_text('Computer Cards: ' +str(len(Player2)), font, Black, 360, 540)
             draw_text("Press A to flip", font, Blue, 680, 10)
@@ -246,16 +256,6 @@ def Singleplayer(round_start, clicked, Shuffled, roundnum, ):
 
     return Shuffled, round_start, roundnum
 
-    clicked = False
-    while len(Player1) != 26 or len(Player2) != 26 or roundnum != 100:
-                    
-        keys_pressed = pygame.key.get_pressed()
-        if keys_pressed[pygame.K_a] and clicked == False:
-            Play1.append[Player1[0]]
-            Player1.remove(Player1[0])
-        elif keys_pressed[pygame.K_a] == False:
-            clicked = False
-
 def Multiplayer(round_start, clicked, Shuffled, roundnum, ):
 
     if Shuffled == False:
@@ -280,6 +280,7 @@ def Multiplayer(round_start, clicked, Shuffled, roundnum, ):
             
         if round_start == True:
             screen.blit(pygame.transform.scale(bg_img,(screen_width,screen_height)), (0,0))
+            draw_text("Round "+str(roundnum), Countdown_font, White, 40, 20)
             draw_text('Player 1 Cards: ' +str(len(Player1)), font, Black, 380, 10)
             draw_text('Player 2 Cards: ' +str(len(Player2)), font, Black, 380, 540)
             draw_text("Press A to flip", font, Blue, 680, 10)
@@ -302,6 +303,7 @@ def Multiplayer(round_start, clicked, Shuffled, roundnum, ):
             pygame.display.update()
             pygame.time.delay(1000)
             screen.blit(pygame.transform.scale(bg_img,(screen_width,screen_height)), (0,0))
+            draw_text("Round "+str(roundnum), Countdown_font, White, 40, 20)
             draw_text('Player 1 Cards: ' +str(len(Player1)), font, Black, 380, 10)
             draw_text('Player 2 Cards: ' +str(len(Player2)), font, Black, 380, 540)
             draw_text("Press A to flip", font, Blue, 680, 10)
@@ -402,10 +404,14 @@ Game_deck.append(13)
 
 #creating buttons and giving coordinates to place them on the window and an image to display
 #btn = button
-Singleplayer_btn = MenuButton(330, 270, singleplayer_img)
-Multiplayer_btn = MenuButton(330, 400, multiplayer_img)
-Rules_btn = MenuButton(330, 400, rules_img)
+Singleplayer_btn = MenuButton(340, 220, singleplayer_img)
+Multiplayer_btn = MenuButton(340, 345, multiplayer_img)
+Rules_btn = MenuButton(345, 470, rules_img)
 Continue_btn = MenuButton(330, 450, continue_img)
+Card_btn1 = MenuButton(75, 75, Card_back_img)
+Card_btn2 = MenuButton(75, 350, Card_back_img)
+Card_btn3 = MenuButton(775, 75, Card_back_img)
+Card_btn4 = MenuButton(775, 350, Card_back_img)
 
 #starts the main game loop
 run = True
@@ -419,6 +425,7 @@ while run == True:
     if Gameplay == 0:
         #prints the background first before the other images so there is no overlap
         screen.blit(pygame.transform.scale(bg_img,(screen_width,screen_height)), (0,0))
+        screen.blit(pygame.transform.scale(title_img,(250,125)), (370,30))
 
         #sets the main menu and instructions variable to true to make them reappear
         main_menu = True
@@ -441,8 +448,12 @@ while run == True:
     #runs the section if the main menu variable is true
     if main_menu == True:
 
-        #draws the background image before anything else
-        screen.blit(pygame.transform.scale(title_img,(320,125)), (340,60))
+        
+        Card_btn1.draw(Ace_img, Card_back_img)
+        Card_btn2.draw(Seven_img, Card_back_img)
+        Card_btn3.draw(King_img, Card_back_img)
+        Card_btn4.draw(Jack_img, Card_back_img)
+        
 
         #checks if the singleplayer button was pressed
         if Singleplayer_btn.draw(singleplayer_img_hover, singleplayer_img):
@@ -458,7 +469,6 @@ while run == True:
 
             #draws the background image to remove the menu images
             screen.blit(pygame.transform.scale(bg_img,(screen_width,screen_height)), (0,0))
-
         #checks if the multiplayer button was pressed
         if Multiplayer_btn.draw(multiplayer_img_hover, multiplayer_img):
 
@@ -467,6 +477,20 @@ while run == True:
 
             #sets the Gameplay variable to 2 (multiplayer game)
             Gameplay = 2
+
+            #delays button reaction by 100 milliseconds
+            pygame.time.delay(100)
+
+            #draws that background image to remove menu images
+            screen.blit(pygame.transform.scale(bg_img,(screen_width,screen_height)), (0,0))
+
+        if Rules_btn.draw(rules_img_hover, rules_img):
+
+            #sets the main menu variable to false(stops the main menu screen loop)
+            instructions = False
+
+            #sets the Gameplay variable to 2 (multiplayer game)
+            Gameplay = 0
 
             #delays button reaction by 100 milliseconds
             pygame.time.delay(100)
