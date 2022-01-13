@@ -30,7 +30,7 @@ pygame.display.set_caption('WAR!')
 main_menu = True
 
 #setting a variable to check if in the program is in instructions or not
-instructions = True
+instructions = False
 
 #setting a variable to check if the user clicked singleplayer, multiplayer or if the game has ended
 Gameplay = 0
@@ -433,6 +433,14 @@ def Handle_calculations(roundnum, round_start):
     # returns these values
     return round_start, roundnum
 
+def Instructions(Gameplay, main_menu):
+    
+    if Continue_btn.draw(continue_img_hover, continue_img):
+        Gameplay = 0
+        main_menu = False
+
+    return Gameplay, main_menu
+
 #creating lists for Player decks and the flipped pile
 Game_deck = []
 War_pile = []
@@ -453,7 +461,7 @@ Game_deck.append(13)
 Singleplayer_btn = MenuButton(340, 220, singleplayer_img)
 Multiplayer_btn = MenuButton(340, 345, multiplayer_img)
 Rules_btn = MenuButton(345, 470, rules_img)
-Continue_btn = MenuButton(330, 450, continue_img)
+Continue_btn = MenuButton(670, 475, continue_img)
 Card_btn1 = MenuButton(75, 75, Card_back_img)
 Card_btn2 = MenuButton(75, 350, Card_back_img)
 Card_btn3 = MenuButton(775, 75, Card_back_img)
@@ -462,6 +470,7 @@ Card_btn4 = MenuButton(775, 350, Card_back_img)
 run = True
 
 while run == True:
+
     #runs this if statement if the gameplay variable is 0 (start of program or if a player wins)
     if Gameplay == 0:
         #prints the background first before the other images so there is no overlap then the title image
@@ -470,7 +479,7 @@ while run == True:
 
         #sets the main menu and instructions variable to true to run the main menu again and load instructions if the rules button is pressed
         main_menu = True
-        instructions = True
+        instructions = False
         Shuffled = False
         roundnum = 1
         clicked = False
@@ -591,7 +600,10 @@ while run == True:
 
             #sets Gameplay value to 0, which sends user to the main menu
             Gameplay = 0
-                
+
+    elif Gameplay == 3:
+                Gameplay, main_menu = Instructions(Gameplay, main_menu)    
+            
     #runs the section if the main menu variable is true
     if main_menu == True:
 
@@ -633,21 +645,21 @@ while run == True:
 
         if Rules_btn.draw(rules_img_hover, rules_img):
             
+            screen.blit(pygame.transform.scale(menu_bg_img,(screen_width,screen_height)), (0,0))
             draw_text("Here are the instructions", font, Black, 50, 60)
+
             # updates the display to show the instruction text
             pygame.display.update()
-                
-            #sets the main menu variable to false(stops the main menu screen loop)
-            instructions = False
 
-            #sets the Gameplay variable to 2 (multiplayer game)
-            Gameplay = 0
+            #sets the main menu variable to false(stops the main menu screen loop)
+            Gameplay = 3
+            main_menu = False
 
             #delays button reaction by 100 milliseconds
             pygame.time.delay(100)
+            
 
-            #draws that background image to remove menu images
-            screen.blit(pygame.transform.scale(menu_bg_img,(screen_width,screen_height)), (0,0))
+    
 
     # if the player has quit the game then the program will close
     for event in pygame.event.get():
