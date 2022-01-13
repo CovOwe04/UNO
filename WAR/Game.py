@@ -195,6 +195,8 @@ def Round_countdown(Gameplay):
     #'pygame.time.delay' delays the code for desired amount of milliseconds (1000 mlliseconds in this case)
     pygame.time.delay(1000)
     
+    Game_overlay()
+    
     # draws the text again but for the number 2 instead of 3 to countdown
     draw_text("2", Countdown_font, White, 480, 240)
     
@@ -204,6 +206,8 @@ def Round_countdown(Gameplay):
     # again delays the number from displaying for 1000 milliseconds (as in a real countdown)
     pygame.time.delay(1000)
     
+    Game_overlay()
+    
     # draws the text again but for the number 1 instead of 2 to countdown
     draw_text("1", Countdown_font, White, 520, 240)
     
@@ -212,6 +216,8 @@ def Round_countdown(Gameplay):
     
     # again delays the number from displaying for 1000 milliseconds (as in a real countdown)
     pygame.time.delay(1000)
+    
+    Game_overlay()
     
     # draws the text again but for the word "FLIP!" instead of the countdown
     draw_text("FLIP!", Countdown_font, White, 435, 290)
