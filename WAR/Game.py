@@ -22,6 +22,7 @@ screen_width, screen_height = 1000, 600
 screen = pygame.display.set_mode((screen_width, screen_height))
 
 #sets a title for the window
+# In this case the title is WAR
 pygame.display.set_caption('WAR!')
 
 #setting a variable to check if the program is in the main menu or not
@@ -58,7 +59,8 @@ Red = (255,0,0)
 
 #setting variables as images to use for the title, single player or mulitplayer(convert_alpha is a function that helps make the game run smoother)
 #'pygame.image.load' loads an image from a directory in your computer
-#'pygame.transform.scale' scales the image to the desired resolution
+# it can load an image from a folder, and in this case the folder is called "assets"
+#'pygame.transform.scale' scales the image to the desired resolution specified
 play_bg_img = pygame.image.load('Assets/WAR_bg.jpg').convert_alpha()
 menu_bg_img = pygame.image.load('Assets/mainmenu.png').convert_alpha()
 title_img = pygame.image.load('Assets/WAR_title.png').convert_alpha()
@@ -94,7 +96,7 @@ def draw_text(text, font, text_col, x, y,):
 #creates a class for the button in regards to the location, size and if it is clicked or not
 class MenuButton():
 
-    #this function is the creation of the button itself, its called when the class is called
+    #this function is the creation of the button itself, it's called when the class is called
     def __init__(self, x, y, image):
         #sets the button's image to the given image
         self.image = image
@@ -130,11 +132,11 @@ class MenuButton():
                 action = True
                 self.clicked = True
         
-        #if mouse if not over button, set the image to the original button image unaltered
+        #if mouse if not over button, it will then set the image to the original button image unaltered
         else:
             self.image = image2        
 
-        #checks if the mouse isnt pressed
+        #checks if the mouse isn't pressed
         if pygame.mouse.get_pressed()[0] == 0:
             #sets the click variable as false so the computer knows its not pressed
             self.clicked = False
@@ -148,22 +150,26 @@ class MenuButton():
 
 #this function is called when the countdown happens before each card flip
 def Round_countdown(Gameplay):
-
+    
+    #defining a function named Game_overlay
     def Game_overlay():
         #draws overlay of the gameplay screen
         screen.blit(pygame.transform.scale(play_bg_img,(screen_width,screen_height)), (0,0))
+        # draws the text including the round number and the font of the countdown
         draw_text("Round "+str(roundnum), Countdown_font, White, 40, 20)
+        # draws the text including the player 1 cards and the font
         draw_text('Player 1 Cards: ' +str(len(Player1_deck)), font, Black, 380, 10)
 
-        #will only draw if the user chose singleplayer
+        #this will only draw if the user chose singleplayer ( 1 player vs a bot)
         if Gameplay == 1:
+            # draws the text for the computer cards including the font
             draw_text('Computer Cards: ' +str(len(Player2_deck)), font, Black, 360, 540)
     
-        #will only draw if the user chose multiplayer
+        #this will only draw if the user chose multiplayer ( 2 players on the same device)
         elif Gameplay == 2:
             draw_text('Player 2 Cards: ' +str(len(Player2_deck)), font, Black, 380, 540)
 
-        #will only draw if the user chose multiplayer
+        #this will only draw if the user chose multiplayer
         if Gameplay == 2:
             draw_text("Press L to flip", font, Blue, 680, 540)
         draw_text("Press A to flip", font, Blue, 680, 10)
