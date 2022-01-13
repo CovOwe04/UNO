@@ -644,6 +644,9 @@ while run == True:
             def instructions():
                 display_message('Here are the rules')
                 
+            instructions()
+            display_message()
+                
             #sets the main menu variable to false(stops the main menu screen loop)
             instructions = False
 
