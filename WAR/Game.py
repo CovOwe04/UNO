@@ -654,6 +654,7 @@ while run == True:
             
             screen.blit(pygame.transform.scale(menu_bg_img,(screen_width,screen_height)), (0,0))
             draw_text("Here are the instructions", font, Black, 50, 60)
+            draw_text("How about another line?", font, Black, 50, 60)
 
             # updates the display to show the instruction text
             pygame.display.update()
