@@ -151,6 +151,7 @@ def Round_countdown(Gameplay):
     def Game_overlay():
         #draws overlay of the gameplay screen
         screen.blit(pygame.transform.scale(play_bg_img,(screen_width,screen_height)), (0,0))
+        screen.blit(MainMenu_img, (20,475))
         # draws the text including the round number and the font of the countdown
         draw_text("Round "+str(roundnum), Countdown_font, White, 40, 20)
         # draws the text including the player 1 cards and the font
@@ -185,7 +186,7 @@ def Round_countdown(Gameplay):
 
     #runs the overlay function
     Game_overlay()
-
+    screen.blit(MainMenu_img, (20,475))
     #displays the countdown of 3 seconds onto the screen
     draw_text("3", Countdown_font, White, 440, 240)
     
@@ -196,7 +197,7 @@ def Round_countdown(Gameplay):
     pygame.time.delay(1000)
     
     Game_overlay()
-    
+    screen.blit(MainMenu_img, (20,475))
     # draws the text again but for the number 2 instead of 3 to countdown
     draw_text("2", Countdown_font, White, 480, 240)
     
@@ -218,7 +219,7 @@ def Round_countdown(Gameplay):
     pygame.time.delay(1000)
     
     Game_overlay()
-    
+    screen.blit(MainMenu_img, (20,475))
     # draws the text again but for the word "FLIP!" instead of the countdown
     draw_text("FLIP!", Countdown_font, White, 435, 290)
     
@@ -230,7 +231,7 @@ def Round_countdown(Gameplay):
 
     #draws the overlay again
     Game_overlay()
-
+    screen.blit(MainMenu_img, (20,475))
     #will play the bot's card if the user chose singleplayer
     if Gameplay == 1:
 
