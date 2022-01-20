@@ -182,7 +182,7 @@ def Round_countdown(Gameplay):
 
         #will only draw if the war pile has cards because the 2 players are at war
         if len(War_pile) > 0:
-            screen.blit(pygame.transform.scale(Card_back_img,(150, 200)), (150,220))
+            screen.blit(pygame.transform.scale(Card_back_img,(150, 200)), (150,200))
 
     #runs the overlay function
     Game_overlay()
@@ -487,7 +487,7 @@ while run == True:
         #sets the main menu and instructions variable to true to run the main menu again and load instructions if the rules button is pressed
         main_menu = True
         Shuffled = False
-        roundnum = 98
+        roundnum = 1
         clicked = False
         round_start = True
 
@@ -539,11 +539,11 @@ while run == True:
             screen.blit(pygame.transform.scale(play_bg_img,(screen_width,screen_height)), (0,0))
 
             #draws game end text with the winner ( player 1 or computer)
-            draw_text("Game End", wartime_font, Red, 110, 120)
+            draw_text("Game End", wartime_font, Red, 150, 140)
             if Player1_deck > Player2_deck:
-                draw_text("Player 1 Won!", font, Green, 380, 350)
+                draw_text("Player 1 Won!", font, Green, 420, 370)
             if Player1_deck < Player2_deck:
-                draw_text("Computer Won!", font, Green, 380, 350)
+                draw_text("Computer Won!", font, Green, 420, 370)
             pygame.display.update()
             pygame.time.delay(5000)
 
