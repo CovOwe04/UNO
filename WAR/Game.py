@@ -654,8 +654,22 @@ while run == True:
         if Rules_btn.draw(rules_img_hover, rules_img):
             
             screen.blit(pygame.transform.scale(menu_bg_img,(screen_width,screen_height)), (0,0))
-            draw_text("Here are the instructions", font, Black, 50, 60)
-            draw_text("How about another line?", font, Black, 50, 60)
+            draw_text("How to play:", Countdown_font, White, 360, 20)
+            draw_text("Each Players has 26 cards each", font, White, 310, 105)
+            draw_text("Player 1 flips a card over with the 'A' key", font, White, 270, 130)
+            draw_text("Player 2 flips a card over with the 'L' key", font, White, 270, 155)
+            draw_text("Once each player flips a card,", font, White, 325, 180)
+            draw_text("Highest card value wins the round", font, White, 300, 205)
+            draw_text("The winner gets the played cards,", font, White, 300, 230)
+            draw_text("If cards are the same value, 'WAR' begins:", font, White, 260, 255)
+            draw_text("The cards played and 1 card from each player's deck", font, White, 195, 280)
+            draw_text("Gets added to the war pile for the next round", font, White, 245, 305)
+            draw_text("When a player wins following a 'WAR'", font, White, 275, 330)
+            draw_text("The winner gets the played cards,", font, White, 300, 355)
+            draw_text("Additionally the winner gets the war pile", font, White, 260, 380)
+            draw_text("if a player reaches 52 cards, they win", font, White, 285, 405)
+            draw_text("if 100 rounds passed, player with the most cards wins", font, White, 190, 430)
+            
 
             # updates the display to show the instruction text
             pygame.display.update()
