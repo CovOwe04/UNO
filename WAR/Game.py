@@ -237,7 +237,7 @@ def Round_countdown(Gameplay):
 
         #runs a loop to go through all the 13 card values and only displays the card's value,
         #(eg. if Player2_deck[0] =  6, "Player2_deck[0] == x1" is only true when x1 is 6 in this case so it only displays the 6 card onto the screen)
-        for x1 in range(0,13):
+        for x1 in range(0,14):
             if Player2_deck[0] == x1:
                 #draws the card onto screen using images from the assets folder
                 screen.blit(pygame.transform.scale(pygame.image.load('Assets/'+str(x1)+'CARD.png'),(150, 200)), (420,320))
