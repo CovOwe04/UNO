@@ -174,7 +174,7 @@ def Round_countdown(Gameplay):
         draw_text("Press A to flip", font, White, 695, 40)
 
         #draws the discard pile outline on the left of the screen
-        screen.blit(pygame.transform.scale(War_pile_img,(150, 200)), (150,200))
+        screen.blit(pygame.transform.scale(War_pile_img,(150, 200)), (100,200))
 
         #draws the player's decks on the right of the screen
         screen.blit(pygame.transform.scale(Card_back_img,(150, 200)), (700,70))
@@ -182,7 +182,7 @@ def Round_countdown(Gameplay):
 
         #will only draw if the war pile has cards because the 2 players are at war
         if len(War_pile) > 0:
-            screen.blit(pygame.transform.scale(Card_back_img,(150, 200)), (150,200))
+            screen.blit(pygame.transform.scale(Card_back_img,(150, 200)), (100,200))
 
     #runs the overlay function
     Game_overlay()
