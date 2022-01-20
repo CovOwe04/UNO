@@ -468,7 +468,7 @@ for x in range(1,14):
 Singleplayer_btn = MenuButton(340, 220, singleplayer_img)
 Multiplayer_btn = MenuButton(340, 345, multiplayer_img)
 Rules_btn = MenuButton(345, 470, rules_img)
-Continue_btn = MenuButton(670, 475, continue_img)
+Continue_btn = MenuButton(345, 475, continue_img)
 MainMenu_btn = MenuButton(20,475, MainMenu_img)
 Card_btn1 = MenuButton(75, 75, Card_back_img)
 Card_btn2 = MenuButton(75, 350, Card_back_img)
