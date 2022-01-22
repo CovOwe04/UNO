@@ -54,6 +54,7 @@ Red = (255,0,0)
 # it can load an image from a folder, and in this case the folder is called "assets"
 #'pygame.transform.scale' scales the image to the desired resolution specified
 play_bg_img = pygame.image.load('Assets/WAR_bg.jpg').convert_alpha()
+# Kat found the background images and the war title image
 menu_bg_img = pygame.image.load('Assets/mainmenu.png').convert_alpha()
 title_img = pygame.image.load('Assets/WAR_title.png').convert_alpha()
 singleplayer_img = pygame.image.load('Assets/start_btn.png').convert_alpha()
