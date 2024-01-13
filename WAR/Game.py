@@ -37,6 +37,7 @@ Shuffled = False
 
 #creating a font for all  text in the game (font style, font size) 
 font = pygame.font.SysFont('impact', 36)
+rules_font = pygame.font.SysFont('impact', 30)
 wartime_font = pygame.font.SysFont('impact', 200)
 Countdown_font = pygame.font.SysFont('comicsans', 50)
 
@@ -156,7 +157,7 @@ def Round_countdown(Gameplay):
         # draws the text including the round number and the font of the countdown
         draw_text("Round "+str(roundnum), Countdown_font, White, 40, 20)
         # draws the text including the player 1 cards and the font
-        draw_text('Player 1 Cards: ' +str(len(Player1_deck)), font, Black, 380, 40)
+        draw_text('Player 1 Cards: ' +str(len(Player1_deck)), font, Black, 365, 30)
 
         #this will only draw if the user chose singleplayer ( 1 player vs a bot)
         if Gameplay == 1:
@@ -166,13 +167,13 @@ def Round_countdown(Gameplay):
         #this will only draw if the user chose multiplayer ( 2 players on the same device)
         elif Gameplay == 2:
             # draws the text for the 2nd player cards including the font
-            draw_text('Player 2 Cards: ' +str(len(Player2_deck)), font, Black, 380, 540)
+            draw_text('Player 2 Cards: ' +str(len(Player2_deck)), font, Black, 365, 540)
 
         #this will only draw if the user chose multiplayer
         if Gameplay == 2:
             # draws the text for the controls on how to flip a card and their positioning
-            draw_text("Press L to flip", font, White, 695, 540)
-        draw_text("Press A to flip", font, White, 695, 40)
+            draw_text("Press L to flip", font, White, 680, 540)
+        draw_text("Press A to flip", font, White, 680, 20)
 
         #draws the discard pile outline on the left of the screen
         screen.blit(pygame.transform.scale(War_pile_img,(150, 200)), (100,200))
@@ -469,7 +470,7 @@ for x in range(1,14):
 Singleplayer_btn = MenuButton(340, 220, singleplayer_img)
 Multiplayer_btn = MenuButton(340, 345, multiplayer_img)
 Rules_btn = MenuButton(345, 470, rules_img)
-Continue_btn = MenuButton(345, 475, continue_img)
+Continue_btn = MenuButton(345, 495, continue_img)
 MainMenu_btn = MenuButton(20,475, MainMenu_img)
 Card_btn1 = MenuButton(75, 75, Card_back_img)
 Card_btn2 = MenuButton(75, 350, Card_back_img)
@@ -654,21 +655,21 @@ while run == True:
         if Rules_btn.draw(rules_img_hover, rules_img):
             
             screen.blit(pygame.transform.scale(menu_bg_img,(screen_width,screen_height)), (0,0))
-            draw_text("How to play:", Countdown_font, White, 360, 20)
-            draw_text("Each Players has 26 cards each", font, White, 310, 105)
-            draw_text("Player 1 flips a card over with the 'A' key", font, White, 270, 130)
-            draw_text("Player 2 flips a card over with the 'L' key", font, White, 270, 155)
-            draw_text("Once each player flips a card,", font, White, 325, 180)
-            draw_text("Highest card value wins the round", font, White, 300, 205)
-            draw_text("The winner gets the played cards,", font, White, 300, 230)
-            draw_text("If cards are the same value, 'WAR' begins:", font, White, 260, 255)
-            draw_text("The cards played and 1 card from each player's deck", font, White, 195, 280)
-            draw_text("Gets added to the war pile for the next round", font, White, 245, 305)
-            draw_text("When a player wins following a 'WAR'", font, White, 275, 330)
-            draw_text("The winner gets the played cards,", font, White, 300, 355)
-            draw_text("Additionally the winner gets the war pile", font, White, 260, 380)
-            draw_text("if a player reaches 52 cards, they win", font, White, 285, 405)
-            draw_text("if 100 rounds passed, player with the most cards wins", font, White, 190, 430)
+            draw_text("How to play:", Countdown_font, Black, 360, 0)
+            draw_text("Each Players has 26 cards each", rules_font, White, 310, 60)
+            draw_text("Player 1 flips a card over with the 'A' key", rules_font, White, 260, 90)
+            draw_text("Player 2 flips a card over with the 'L' key", rules_font, White, 260, 120)
+            draw_text("Once each player flips a card,", rules_font, White, 320, 150)
+            draw_text("Highest card value wins the round", rules_font, White, 290, 180)
+            draw_text("The winner gets the played cards,", rules_font, White, 300, 210)
+            draw_text("If cards are the same value, 'WAR' begins:", rules_font, White, 250, 240)
+            draw_text("The cards played and 1 card from each player's deck", rules_font, White, 180, 270)
+            draw_text("Gets added to the war pile for the next round", rules_font, White, 250, 300)
+            draw_text("When a player wins following a 'WAR'", rules_font, White, 290, 330)
+            draw_text("The winner gets the played cards,", rules_font, White, 300, 360)
+            draw_text("Additionally the winner gets the war pile", rules_font, White, 250, 390)
+            draw_text("if a player reaches 52 cards, they win", rules_font, White, 280, 420)
+            draw_text("if 100 rounds passed, player with the most cards wins", rules_font, White, 170, 450)
             
 
             # updates the display to show the instruction text
